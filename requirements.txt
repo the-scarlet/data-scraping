@@ -1,0 +1,8 @@
+selenium
+fastapi[standard]
+uvicorn
+pandas
+openpyxl
+pytest
+build
+feedparser

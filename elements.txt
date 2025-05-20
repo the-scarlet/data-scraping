@@ -1,0 +1,304 @@
+: <div class="goog-menuitem" data-value="1" role="menuitem" id=":0" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Quand le cas se présente</div></div>
+: <div class="goog-menuitem" data-value="2" role="menuitem" id=":1" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Une fois par jour maximum</div></div>
+: <div class="goog-menuitem" data-value="3" role="menuitem" id=":2" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Une fois par semaine maximum</div></div>
+: <div class="goog-menuitem" data-value="3" role="menuitem" id=":4" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Seulement les meilleurs résultats</div></div>
+: <div class="goog-menuitem" data-value="2" role="menuitem" id=":5" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Tous les résultats</div></div>
+: <div class="goog-menuitem multiselect_item" data-value="-1" role="menuitem" id=":7" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;"><span class="menu_item_selected" style="user-select: none;">Automatique</span></div></div>
+: <div class="goog-menuitem multiselect_item" data-value="2" role="menuitem" id=":8" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;"><span style="user-select: none;" class="">Actualités</span></div></div>
+: <div class="goog-menuitem multiselect_item" data-value="1" role="menuitem" id=":9" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;"><span style="user-select: none;" class="">Blogs</span></div></div>
+: <div class="goog-menuitem multiselect_item" data-value="3" role="menuitem" id=":a" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;"><span style="user-select: none;" class="">Web</span></div></div>
+: <div class="goog-menuitem multiselect_item" data-value="5" role="menuitem" id=":c" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;"><span style="user-select: none;">Vidéo</span></div></div>
+: <div class="goog-menuitem multiselect_item" data-value="6" role="menuitem" id=":d" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;"><span style="user-select: none;">Livres</span></div></div>
+: <div class="goog-menuitem multiselect_item" data-value="7" role="menuitem" id=":e" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;"><span style="user-select: none;">Discussions</span></div></div>
+: <div class="goog-menuitem multiselect_item" data-value="8" role="menuitem" id=":f" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;"><span style="user-select: none;">Finance</span></div></div>
+: <div class="goog-menuitem" data-value="" role="menuitem" id=":h" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Toutes les langues</div></div>
+: <div class="goog-menuitem" data-value="fr" role="menuitem" id=":i" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">français</div></div>
+: <div class="goog-menuitem" data-value="af" role="menuitem" id=":k" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">afrikaans</div></div>
+: <div class="goog-menuitem" data-value="de" role="menuitem" id=":l" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">allemand</div></div>
+: <div class="goog-menuitem" data-value="en" role="menuitem" id=":m" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">anglais</div></div>
+: <div class="goog-menuitem" data-value="ar" role="menuitem" id=":n" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">arabe</div></div>
+: <div class="goog-menuitem" data-value="hy" role="menuitem" id=":o" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">arménien</div></div>
+: <div class="goog-menuitem" data-value="be" role="menuitem" id=":p" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">biélorusse</div></div>
+: <div class="goog-menuitem" data-value="bg" role="menuitem" id=":q" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">bulgare</div></div>
+: <div class="goog-menuitem" data-value="ca" role="menuitem" id=":r" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">catalan</div></div>
+: <div class="goog-menuitem" data-value="zh-CN" role="menuitem" id=":s" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">chinois (simplifié)</div></div>
+: <div class="goog-menuitem" data-value="zh-TW" role="menuitem" id=":t" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">chinois (traditionnel)</div></div>
+: <div class="goog-menuitem" data-value="ko" role="menuitem" id=":u" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">coréen</div></div>
+: <div class="goog-menuitem" data-value="hr" role="menuitem" id=":v" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">croate</div></div>
+: <div class="goog-menuitem" data-value="da" role="menuitem" id=":w" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">danois</div></div>
+: <div class="goog-menuitem" data-value="es" role="menuitem" id=":x" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">espagnol</div></div>
+: <div class="goog-menuitem" data-value="eo" role="menuitem" id=":y" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">espéranto</div></div>
+: <div class="goog-menuitem" data-value="et" role="menuitem" id=":z" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">estonien</div></div>
+: <div class="goog-menuitem" data-value="fil" role="menuitem" id=":10" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">filipino</div></div>
+: <div class="goog-menuitem" data-value="fi" role="menuitem" id=":11" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">finnois</div></div>
+: <div class="goog-menuitem" data-value="el" role="menuitem" id=":12" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">grec</div></div>
+: <div class="goog-menuitem" data-value="iw" role="menuitem" id=":13" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">hébreu</div></div>
+: <div class="goog-menuitem" data-value="hi" role="menuitem" id=":14" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">hindi</div></div>
+: <div class="goog-menuitem" data-value="hu" role="menuitem" id=":15" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">hongrois</div></div>
+: <div class="goog-menuitem" data-value="id" role="menuitem" id=":16" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">indonésien</div></div>
+: <div class="goog-menuitem" data-value="is" role="menuitem" id=":17" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">islandais</div></div>
+: <div class="goog-menuitem" data-value="it" role="menuitem" id=":18" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">italien</div></div>
+: <div class="goog-menuitem" data-value="ja" role="menuitem" id=":19" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">japonais</div></div>
+: <div class="goog-menuitem" data-value="lv" role="menuitem" id=":1a" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">letton</div></div>
+: <div class="goog-menuitem" data-value="lt" role="menuitem" id=":1b" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">lituanien</div></div>
+: <div class="goog-menuitem" data-value="nl" role="menuitem" id=":1c" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">néerlandais</div></div>
+: <div class="goog-menuitem" data-value="no" role="menuitem" id=":1d" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">norvégien</div></div>
+: <div class="goog-menuitem" data-value="fa" role="menuitem" id=":1e" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">persan</div></div>
+: <div class="goog-menuitem" data-value="pl" role="menuitem" id=":1f" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">polonais</div></div>
+: <div class="goog-menuitem" data-value="pt" role="menuitem" id=":1g" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">portugais</div></div>
+: <div class="goog-menuitem" data-value="ro" role="menuitem" id=":1h" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">roumain</div></div>
+: <div class="goog-menuitem" data-value="ru" role="menuitem" id=":1i" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">russe</div></div>
+: <div class="goog-menuitem" data-value="sr" role="menuitem" id=":1j" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">serbe</div></div>
+: <div class="goog-menuitem" data-value="sk" role="menuitem" id=":1k" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">slovaque</div></div>
+: <div class="goog-menuitem" data-value="sl" role="menuitem" id=":1l" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">slovène</div></div>
+: <div class="goog-menuitem" data-value="sv" role="menuitem" id=":1m" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">suédois</div></div>
+: <div class="goog-menuitem" data-value="sw" role="menuitem" id=":1n" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">swahili</div></div>
+: <div class="goog-menuitem" data-value="cs" role="menuitem" id=":1o" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">tchèque</div></div>
+: <div class="goog-menuitem" data-value="th" role="menuitem" id=":1p" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">thaï</div></div>
+: <div class="goog-menuitem" data-value="tr" role="menuitem" id=":1q" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">turc</div></div>
+: <div class="goog-menuitem" data-value="uk" role="menuitem" id=":1r" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">ukrainien</div></div>
+: <div class="goog-menuitem" data-value="vi" role="menuitem" id=":1s" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">vietnamien</div></div>
+: <div class="goog-menuitem" data-value="" role="menuitem" id=":1u" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Toutes les régions</div></div>
+: <div class="goog-menuitem" data-value="US" role="menuitem" id=":1v" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">États-Unis</div></div>
+: <div class="goog-menuitem" data-value="AF" role="menuitem" id=":1x" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Afghanistan</div></div>
+: <div class="goog-menuitem" data-value="ZA" role="menuitem" id=":1y" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Afrique du Sud</div></div>
+: <div class="goog-menuitem" data-value="AL" role="menuitem" id=":1z" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Albanie</div></div>
+: <div class="goog-menuitem" data-value="DZ" role="menuitem" id=":20" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Algérie</div></div>
+: <div class="goog-menuitem" data-value="DE" role="menuitem" id=":21" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Allemagne</div></div>
+: <div class="goog-menuitem" data-value="AD" role="menuitem" id=":22" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Andorre</div></div>
+: <div class="goog-menuitem" data-value="AO" role="menuitem" id=":23" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Angola</div></div>
+: <div class="goog-menuitem" data-value="AI" role="menuitem" id=":24" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Anguilla</div></div>
+: <div class="goog-menuitem" data-value="AQ" role="menuitem" id=":25" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Antarctique</div></div>
+: <div class="goog-menuitem" data-value="AG" role="menuitem" id=":26" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Antigua-et-Barbuda</div></div>
+: <div class="goog-menuitem" data-value="SA" role="menuitem" id=":27" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Arabie saoudite</div></div>
+: <div class="goog-menuitem" data-value="AR" role="menuitem" id=":28" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Argentine</div></div>
+: <div class="goog-menuitem" data-value="AM" role="menuitem" id=":29" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Arménie</div></div>
+: <div class="goog-menuitem" data-value="AW" role="menuitem" id=":2a" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Aruba</div></div>
+: <div class="goog-menuitem" data-value="AU" role="menuitem" id=":2b" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Australie</div></div>
+: <div class="goog-menuitem" data-value="AT" role="menuitem" id=":2c" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Autriche</div></div>
+: <div class="goog-menuitem" data-value="AZ" role="menuitem" id=":2d" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Azerbaïdjan</div></div>
+: <div class="goog-menuitem" data-value="BS" role="menuitem" id=":2e" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Bahamas</div></div>
+: <div class="goog-menuitem" data-value="BH" role="menuitem" id=":2f" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Bahreïn</div></div>
+: <div class="goog-menuitem" data-value="BD" role="menuitem" id=":2g" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Bangladesh</div></div>
+: <div class="goog-menuitem" data-value="BB" role="menuitem" id=":2h" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Barbade</div></div>
+: <div class="goog-menuitem" data-value="BE" role="menuitem" id=":2i" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Belgique</div></div>
+: <div class="goog-menuitem" data-value="BZ" role="menuitem" id=":2j" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Belize</div></div>
+: <div class="goog-menuitem" data-value="BJ" role="menuitem" id=":2k" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Bénin</div></div>
+: <div class="goog-menuitem" data-value="BM" role="menuitem" id=":2l" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Bermudes</div></div>
+: <div class="goog-menuitem" data-value="BT" role="menuitem" id=":2m" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Bhoutan</div></div>
+: <div class="goog-menuitem" data-value="BY" role="menuitem" id=":2n" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Biélorussie</div></div>
+: <div class="goog-menuitem" data-value="BO" role="menuitem" id=":2o" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Bolivie</div></div>
+: <div class="goog-menuitem" data-value="BA" role="menuitem" id=":2p" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Bosnie-Herzégovine</div></div>
+: <div class="goog-menuitem" data-value="BW" role="menuitem" id=":2q" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Botswana</div></div>
+: <div class="goog-menuitem" data-value="BR" role="menuitem" id=":2r" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Brésil</div></div>
+: <div class="goog-menuitem" data-value="BN" role="menuitem" id=":2s" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Brunei</div></div>
+: <div class="goog-menuitem" data-value="BG" role="menuitem" id=":2t" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Bulgarie</div></div>
+: <div class="goog-menuitem" data-value="BF" role="menuitem" id=":2u" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Burkina Faso</div></div>
+: <div class="goog-menuitem" data-value="BI" role="menuitem" id=":2v" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Burundi</div></div>
+: <div class="goog-menuitem" data-value="KH" role="menuitem" id=":2w" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Cambodge</div></div>
+: <div class="goog-menuitem" data-value="CM" role="menuitem" id=":2x" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Cameroun</div></div>
+: <div class="goog-menuitem" data-value="CA" role="menuitem" id=":2y" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Canada</div></div>
+: <div class="goog-menuitem" data-value="CV" role="menuitem" id=":2z" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Cap-Vert</div></div>
+: <div class="goog-menuitem" data-value="CL" role="menuitem" id=":30" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Chili</div></div>
+: <div class="goog-menuitem" data-value="CN" role="menuitem" id=":31" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Chine</div></div>
+: <div class="goog-menuitem" data-value="CY" role="menuitem" id=":32" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Chypre</div></div>
+: <div class="goog-menuitem" data-value="CO" role="menuitem" id=":33" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Colombie</div></div>
+: <div class="goog-menuitem" data-value="KM" role="menuitem" id=":34" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Comores</div></div>
+: <div class="goog-menuitem" data-value="CD" role="menuitem" id=":35" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Congo-Kinshasa</div></div>
+: <div class="goog-menuitem" data-value="KP" role="menuitem" id=":36" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Corée du Nord</div></div>
+: <div class="goog-menuitem" data-value="KR" role="menuitem" id=":37" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Corée du Sud</div></div>
+: <div class="goog-menuitem" data-value="CR" role="menuitem" id=":38" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Costa Rica</div></div>
+: <div class="goog-menuitem" data-value="CI" role="menuitem" id=":39" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Côte d’Ivoire</div></div>
+: <div class="goog-menuitem" data-value="HR" role="menuitem" id=":3a" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Croatie</div></div>
+: <div class="goog-menuitem" data-value="CU" role="menuitem" id=":3b" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Cuba</div></div>
+: <div class="goog-menuitem" data-value="AN" role="menuitem" id=":3c" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Curaçao</div></div>
+: <div class="goog-menuitem" data-value="DK" role="menuitem" id=":3d" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Danemark</div></div>
+: <div class="goog-menuitem" data-value="DJ" role="menuitem" id=":3e" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Djibouti</div></div>
+: <div class="goog-menuitem" data-value="DM" role="menuitem" id=":3f" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Dominique</div></div>
+: <div class="goog-menuitem" data-value="EG" role="menuitem" id=":3g" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Égypte</div></div>
+: <div class="goog-menuitem" data-value="AE" role="menuitem" id=":3h" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Émirats arabes unis</div></div>
+: <div class="goog-menuitem" data-value="EC" role="menuitem" id=":3i" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Équateur</div></div>
+: <div class="goog-menuitem" data-value="ER" role="menuitem" id=":3j" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Érythrée</div></div>
+: <div class="goog-menuitem" data-value="ES" role="menuitem" id=":3k" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Espagne</div></div>
+: <div class="goog-menuitem" data-value="EE" role="menuitem" id=":3l" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Estonie</div></div>
+: <div class="goog-menuitem" data-value="SZ" role="menuitem" id=":3m" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Eswatini</div></div>
+: <div class="goog-menuitem" data-value="VA" role="menuitem" id=":3n" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">État de la Cité du Vatican</div></div>
+: <div class="goog-menuitem" data-value="ET" role="menuitem" id=":3o" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Éthiopie</div></div>
+: <div class="goog-menuitem" data-value="FJ" role="menuitem" id=":3p" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Fidji</div></div>
+: <div class="goog-menuitem" data-value="FI" role="menuitem" id=":3q" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Finlande</div></div>
+: <div class="goog-menuitem" data-value="FR" role="menuitem" id=":3r" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">France</div></div>
+: <div class="goog-menuitem" data-value="GA" role="menuitem" id=":3s" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Gabon</div></div>
+: <div class="goog-menuitem" data-value="GM" role="menuitem" id=":3t" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Gambie</div></div>
+: <div class="goog-menuitem" data-value="GE" role="menuitem" id=":3u" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Géorgie</div></div>
+: <div class="goog-menuitem" data-value="GS" role="menuitem" id=":3v" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Géorgie du Sud-et-les Îles Sandwich du Sud</div></div>
+: <div class="goog-menuitem" data-value="GH" role="menuitem" id=":3w" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Ghana</div></div>
+: <div class="goog-menuitem" data-value="GI" role="menuitem" id=":3x" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Gibraltar</div></div>
+: <div class="goog-menuitem" data-value="GR" role="menuitem" id=":3y" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Grèce</div></div>
+: <div class="goog-menuitem" data-value="GD" role="menuitem" id=":3z" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Grenade</div></div>
+: <div class="goog-menuitem" data-value="GL" role="menuitem" id=":40" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Groenland</div></div>
+: <div class="goog-menuitem" data-value="GP" role="menuitem" id=":41" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Guadeloupe</div></div>
+: <div class="goog-menuitem" data-value="GU" role="menuitem" id=":42" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Guam</div></div>
+: <div class="goog-menuitem" data-value="GT" role="menuitem" id=":43" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Guatemala</div></div>
+: <div class="goog-menuitem" data-value="GN" role="menuitem" id=":44" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Guinée</div></div>
+: <div class="goog-menuitem" data-value="GQ" role="menuitem" id=":45" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Guinée équatoriale</div></div>
+: <div class="goog-menuitem" data-value="GW" role="menuitem" id=":46" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Guinée-Bissau</div></div>
+: <div class="goog-menuitem" data-value="GY" role="menuitem" id=":47" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Guyana</div></div>
+: <div class="goog-menuitem" data-value="GF" role="menuitem" id=":48" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Guyane française</div></div>
+: <div class="goog-menuitem" data-value="HT" role="menuitem" id=":49" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Haïti</div></div>
+: <div class="goog-menuitem" data-value="HN" role="menuitem" id=":4a" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Honduras</div></div>
+: <div class="goog-menuitem" data-value="HK" role="menuitem" id=":4b" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Hong Kong</div></div>
+: <div class="goog-menuitem" data-value="HU" role="menuitem" id=":4c" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Hongrie</div></div>
+: <div class="goog-menuitem" data-value="BV" role="menuitem" id=":4d" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Île Bouvet</div></div>
+: <div class="goog-menuitem" data-value="CX" role="menuitem" id=":4e" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Île Christmas</div></div>
+: <div class="goog-menuitem" data-value="NF" role="menuitem" id=":4f" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Île Norfolk</div></div>
+: <div class="goog-menuitem" data-value="KY" role="menuitem" id=":4g" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Îles Caïmans</div></div>
+: <div class="goog-menuitem" data-value="CC" role="menuitem" id=":4h" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Îles Cocos</div></div>
+: <div class="goog-menuitem" data-value="CK" role="menuitem" id=":4i" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Îles Cook</div></div>
+: <div class="goog-menuitem" data-value="FO" role="menuitem" id=":4j" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Îles Féroé</div></div>
+: <div class="goog-menuitem" data-value="HM" role="menuitem" id=":4k" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Îles Heard-et-MacDonald</div></div>
+: <div class="goog-menuitem" data-value="FK" role="menuitem" id=":4l" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Îles Malouines (Îles Falkland)</div></div>
+: <div class="goog-menuitem" data-value="MP" role="menuitem" id=":4m" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Îles Mariannes du Nord</div></div>
+: <div class="goog-menuitem" data-value="MH" role="menuitem" id=":4n" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Îles Marshall</div></div>
+: <div class="goog-menuitem" data-value="UM" role="menuitem" id=":4o" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Îles mineures éloignées des États-Unis</div></div>
+: <div class="goog-menuitem" data-value="PN" role="menuitem" id=":4p" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Îles Pitcairn</div></div>
+: <div class="goog-menuitem" data-value="SB" role="menuitem" id=":4q" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Îles Salomon</div></div>
+: <div class="goog-menuitem" data-value="TC" role="menuitem" id=":4r" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Îles Turques-et-Caïques</div></div>
+: <div class="goog-menuitem" data-value="VG" role="menuitem" id=":4s" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Îles Vierges britanniques</div></div>
+: <div class="goog-menuitem" data-value="VI" role="menuitem" id=":4t" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Îles Vierges des États-Unis</div></div>
+: <div class="goog-menuitem" data-value="IN" role="menuitem" id=":4u" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Inde</div></div>
+: <div class="goog-menuitem" data-value="ID" role="menuitem" id=":4v" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Indonésie</div></div>
+: <div class="goog-menuitem" data-value="IQ" role="menuitem" id=":4w" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Irak</div></div>
+: <div class="goog-menuitem" data-value="IR" role="menuitem" id=":4x" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Iran</div></div>
+: <div class="goog-menuitem" data-value="IE" role="menuitem" id=":4y" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Irlande</div></div>
+: <div class="goog-menuitem" data-value="IS" role="menuitem" id=":4z" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Islande</div></div>
+: <div class="goog-menuitem" data-value="IL" role="menuitem" id=":50" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Israël</div></div>
+: <div class="goog-menuitem" data-value="IT" role="menuitem" id=":51" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Italie</div></div>
+: <div class="goog-menuitem" data-value="JM" role="menuitem" id=":52" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Jamaïque</div></div>
+: <div class="goog-menuitem" data-value="JP" role="menuitem" id=":53" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Japon</div></div>
+: <div class="goog-menuitem" data-value="JO" role="menuitem" id=":54" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Jordanie</div></div>
+: <div class="goog-menuitem" data-value="KZ" role="menuitem" id=":55" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Kazakhstan</div></div>
+: <div class="goog-menuitem" data-value="KE" role="menuitem" id=":56" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Kenya</div></div>
+: <div class="goog-menuitem" data-value="KG" role="menuitem" id=":57" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Kirghizstan</div></div>
+: <div class="goog-menuitem" data-value="KI" role="menuitem" id=":58" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Kiribati</div></div>
+: <div class="goog-menuitem" data-value="KW" role="menuitem" id=":59" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Koweït</div></div>
+: <div class="goog-menuitem" data-value="RE" role="menuitem" id=":5a" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">La Réunion</div></div>
+: <div class="goog-menuitem" data-value="LA" role="menuitem" id=":5b" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Laos</div></div>
+: <div class="goog-menuitem" data-value="LS" role="menuitem" id=":5c" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Lesotho</div></div>
+: <div class="goog-menuitem" data-value="LV" role="menuitem" id=":5d" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Lettonie</div></div>
+: <div class="goog-menuitem" data-value="LB" role="menuitem" id=":5e" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Liban</div></div>
+: <div class="goog-menuitem" data-value="LR" role="menuitem" id=":5f" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Liberia</div></div>
+: <div class="goog-menuitem" data-value="LY" role="menuitem" id=":5g" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Libye</div></div>
+: <div class="goog-menuitem" data-value="LI" role="menuitem" id=":5h" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Liechtenstein</div></div>
+: <div class="goog-menuitem" data-value="LT" role="menuitem" id=":5i" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Lituanie</div></div>
+: <div class="goog-menuitem" data-value="LU" role="menuitem" id=":5j" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Luxembourg</div></div>
+: <div class="goog-menuitem" data-value="MO" role="menuitem" id=":5k" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Macao</div></div>
+: <div class="goog-menuitem" data-value="MK" role="menuitem" id=":5l" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Macédoine du Nord</div></div>
+: <div class="goog-menuitem" data-value="MG" role="menuitem" id=":5m" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Madagascar</div></div>
+: <div class="goog-menuitem" data-value="MY" role="menuitem" id=":5n" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Malaisie</div></div>
+: <div class="goog-menuitem" data-value="MW" role="menuitem" id=":5o" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Malawi</div></div>
+: <div class="goog-menuitem" data-value="MV" role="menuitem" id=":5p" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Maldives</div></div>
+: <div class="goog-menuitem" data-value="ML" role="menuitem" id=":5q" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Mali</div></div>
+: <div class="goog-menuitem" data-value="MT" role="menuitem" id=":5r" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Malte</div></div>
+: <div class="goog-menuitem" data-value="MA" role="menuitem" id=":5s" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Maroc</div></div>
+: <div class="goog-menuitem" data-value="MQ" role="menuitem" id=":5t" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Martinique</div></div>
+: <div class="goog-menuitem" data-value="MU" role="menuitem" id=":5u" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Maurice</div></div>
+: <div class="goog-menuitem" data-value="MR" role="menuitem" id=":5v" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Mauritanie</div></div>
+: <div class="goog-menuitem" data-value="YT" role="menuitem" id=":5w" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Mayotte</div></div>
+: <div class="goog-menuitem" data-value="MX" role="menuitem" id=":5x" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Mexique</div></div>
+: <div class="goog-menuitem" data-value="FM" role="menuitem" id=":5y" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Micronésie</div></div>
+: <div class="goog-menuitem" data-value="MD" role="menuitem" id=":5z" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Moldavie</div></div>
+: <div class="goog-menuitem" data-value="MC" role="menuitem" id=":60" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Monaco</div></div>
+: <div class="goog-menuitem" data-value="MN" role="menuitem" id=":61" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Mongolie</div></div>
+: <div class="goog-menuitem" data-value="MS" role="menuitem" id=":62" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Montserrat</div></div>
+: <div class="goog-menuitem" data-value="MZ" role="menuitem" id=":63" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Mozambique</div></div>
+: <div class="goog-menuitem" data-value="MM" role="menuitem" id=":64" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Myanmar (Birmanie)</div></div>
+: <div class="goog-menuitem" data-value="NA" role="menuitem" id=":65" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Namibie</div></div>
+: <div class="goog-menuitem" data-value="NR" role="menuitem" id=":66" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Nauru</div></div>
+: <div class="goog-menuitem" data-value="NP" role="menuitem" id=":67" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Népal</div></div>
+: <div class="goog-menuitem" data-value="NI" role="menuitem" id=":68" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Nicaragua</div></div>
+: <div class="goog-menuitem" data-value="NE" role="menuitem" id=":69" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Niger</div></div>
+: <div class="goog-menuitem" data-value="NG" role="menuitem" id=":6a" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Nigeria</div></div>
+: <div class="goog-menuitem" data-value="NU" role="menuitem" id=":6b" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Niue</div></div>
+: <div class="goog-menuitem" data-value="NO" role="menuitem" id=":6c" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Norvège</div></div>
+: <div class="goog-menuitem" data-value="NC" role="menuitem" id=":6d" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Nouvelle-Calédonie</div></div>
+: <div class="goog-menuitem" data-value="NZ" role="menuitem" id=":6e" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Nouvelle-Zélande</div></div>
+: <div class="goog-menuitem" data-value="OM" role="menuitem" id=":6f" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Oman</div></div>
+: <div class="goog-menuitem" data-value="UG" role="menuitem" id=":6g" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Ouganda</div></div>
+: <div class="goog-menuitem" data-value="UZ" role="menuitem" id=":6h" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Ouzbékistan</div></div>
+: <div class="goog-menuitem" data-value="PK" role="menuitem" id=":6i" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Pakistan</div></div>
+: <div class="goog-menuitem" data-value="PW" role="menuitem" id=":6j" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Palaos</div></div>
+: <div class="goog-menuitem" data-value="PS" role="menuitem" id=":6k" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Palestine</div></div>
+: <div class="goog-menuitem" data-value="PA" role="menuitem" id=":6l" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Panama</div></div>
+: <div class="goog-menuitem" data-value="PG" role="menuitem" id=":6m" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Papouasie-Nouvelle-Guinée</div></div>
+: <div class="goog-menuitem" data-value="PY" role="menuitem" id=":6n" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Paraguay</div></div>
+: <div class="goog-menuitem" data-value="NL" role="menuitem" id=":6o" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Pays-Bas</div></div>
+: <div class="goog-menuitem" data-value="PE" role="menuitem" id=":6p" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Pérou</div></div>
+: <div class="goog-menuitem" data-value="PH" role="menuitem" id=":6q" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Philippines</div></div>
+: <div class="goog-menuitem" data-value="PL" role="menuitem" id=":6r" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Pologne</div></div>
+: <div class="goog-menuitem" data-value="PF" role="menuitem" id=":6s" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Polynésie française</div></div>
+: <div class="goog-menuitem" data-value="PR" role="menuitem" id=":6t" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Porto Rico</div></div>
+: <div class="goog-menuitem" data-value="PT" role="menuitem" id=":6u" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Portugal</div></div>
+: <div class="goog-menuitem" data-value="QA" role="menuitem" id=":6v" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Qatar</div></div>
+: <div class="goog-menuitem" data-value="CF" role="menuitem" id=":6w" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">République centrafricaine</div></div>
+: <div class="goog-menuitem" data-value="DO" role="menuitem" id=":6x" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">République dominicaine</div></div>
+: <div class="goog-menuitem" data-value="RO" role="menuitem" id=":6y" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Roumanie</div></div>
+: <div class="goog-menuitem" data-value="GB" role="menuitem" id=":6z" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Royaume-Uni</div></div>
+: <div class="goog-menuitem" data-value="RU" role="menuitem" id=":70" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Russie</div></div>
+: <div class="goog-menuitem" data-value="RW" role="menuitem" id=":71" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Rwanda</div></div>
+: <div class="goog-menuitem" data-value="EH" role="menuitem" id=":72" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Sahara occidental</div></div>
+: <div class="goog-menuitem" data-value="KN" role="menuitem" id=":73" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Saint-Christophe-et-Niévès</div></div>
+: <div class="goog-menuitem" data-value="SM" role="menuitem" id=":74" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Saint-Marin</div></div>
+: <div class="goog-menuitem" data-value="PM" role="menuitem" id=":75" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Saint-Pierre-et-Miquelon</div></div>
+: <div class="goog-menuitem" data-value="VC" role="menuitem" id=":76" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Saint-Vincent-et-les Grenadines</div></div>
+: <div class="goog-menuitem" data-value="SH" role="menuitem" id=":77" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Sainte-Hélène</div></div>
+: <div class="goog-menuitem" data-value="LC" role="menuitem" id=":78" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Sainte-Lucie</div></div>
+: <div class="goog-menuitem" data-value="SV" role="menuitem" id=":79" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Salvador</div></div>
+: <div class="goog-menuitem" data-value="WS" role="menuitem" id=":7a" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Samoa</div></div>
+: <div class="goog-menuitem" data-value="AS" role="menuitem" id=":7b" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Samoa américaines</div></div>
+: <div class="goog-menuitem" data-value="ST" role="menuitem" id=":7c" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Sao Tomé-et-Principe</div></div>
+: <div class="goog-menuitem" data-value="SN" role="menuitem" id=":7d" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Sénégal</div></div>
+: <div class="goog-menuitem" data-value="RS" role="menuitem" id=":7e" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Serbie</div></div>
+: <div class="goog-menuitem" data-value="SC" role="menuitem" id=":7f" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Seychelles</div></div>
+: <div class="goog-menuitem" data-value="SL" role="menuitem" id=":7g" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Sierra Leone</div></div>
+: <div class="goog-menuitem" data-value="SG" role="menuitem" id=":7h" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Singapour</div></div>
+: <div class="goog-menuitem" data-value="SK" role="menuitem" id=":7i" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Slovaquie</div></div>
+: <div class="goog-menuitem" data-value="SI" role="menuitem" id=":7j" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Slovénie</div></div>
+: <div class="goog-menuitem" data-value="SO" role="menuitem" id=":7k" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Somalie</div></div>
+: <div class="goog-menuitem" data-value="SD" role="menuitem" id=":7l" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Soudan</div></div>
+: <div class="goog-menuitem" data-value="LK" role="menuitem" id=":7m" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Sri Lanka</div></div>
+: <div class="goog-menuitem" data-value="SE" role="menuitem" id=":7n" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Suède</div></div>
+: <div class="goog-menuitem" data-value="CH" role="menuitem" id=":7o" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Suisse</div></div>
+: <div class="goog-menuitem" data-value="SR" role="menuitem" id=":7p" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Suriname</div></div>
+: <div class="goog-menuitem" data-value="SJ" role="menuitem" id=":7q" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Svalbard et Jan Mayen</div></div>
+: <div class="goog-menuitem" data-value="SY" role="menuitem" id=":7r" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Syrie</div></div>
+: <div class="goog-menuitem" data-value="TJ" role="menuitem" id=":7s" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Tadjikistan</div></div>
+: <div class="goog-menuitem" data-value="TW" role="menuitem" id=":7t" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Taïwan</div></div>
+: <div class="goog-menuitem" data-value="TZ" role="menuitem" id=":7u" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Tanzanie</div></div>
+: <div class="goog-menuitem" data-value="TD" role="menuitem" id=":7v" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Tchad</div></div>
+: <div class="goog-menuitem" data-value="CZ" role="menuitem" id=":7w" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Tchéquie</div></div>
+: <div class="goog-menuitem" data-value="TF" role="menuitem" id=":7x" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Terres australes françaises</div></div>
+: <div class="goog-menuitem" data-value="IO" role="menuitem" id=":7y" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Territoire britannique de l’océan Indien</div></div>
+: <div class="goog-menuitem" data-value="TH" role="menuitem" id=":7z" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Thaïlande</div></div>
+: <div class="goog-menuitem" data-value="TP" role="menuitem" id=":80" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Timor oriental</div></div>
+: <div class="goog-menuitem" data-value="TG" role="menuitem" id=":81" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Togo</div></div>
+: <div class="goog-menuitem" data-value="TK" role="menuitem" id=":82" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Tokelau</div></div>
+: <div class="goog-menuitem" data-value="TO" role="menuitem" id=":83" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Tonga</div></div>
+: <div class="goog-menuitem" data-value="TT" role="menuitem" id=":84" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Trinité-et-Tobago</div></div>
+: <div class="goog-menuitem" data-value="TN" role="menuitem" id=":85" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Tunisie</div></div>
+: <div class="goog-menuitem" data-value="TM" role="menuitem" id=":86" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Turkménistan</div></div>
+: <div class="goog-menuitem" data-value="TR" role="menuitem" id=":87" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Turquie</div></div>
+: <div class="goog-menuitem" data-value="TV" role="menuitem" id=":88" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Tuvalu</div></div>
+: <div class="goog-menuitem" data-value="UA" role="menuitem" id=":89" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Ukraine</div></div>
+: <div class="goog-menuitem" data-value="EU" role="menuitem" id=":8a" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Union européenne</div></div>
+: <div class="goog-menuitem" data-value="UY" role="menuitem" id=":8b" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Uruguay</div></div>
+: <div class="goog-menuitem" data-value="VU" role="menuitem" id=":8c" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Vanuatu</div></div>
+: <div class="goog-menuitem" data-value="VE" role="menuitem" id=":8d" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Venezuela</div></div>
+: <div class="goog-menuitem" data-value="VN" role="menuitem" id=":8e" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Viêt Nam</div></div>
+: <div class="goog-menuitem" data-value="WF" role="menuitem" id=":8f" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Wallis-et-Futuna</div></div>
+: <div class="goog-menuitem" data-value="YE" role="menuitem" id=":8g" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Yémen</div></div>
+: <div class="goog-menuitem" data-value="ZM" role="menuitem" id=":8h" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Zambie</div></div>
+: <div class="goog-menuitem" data-value="ZW" role="menuitem" id=":8i" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Zimbabwe</div></div>
+: <div class="goog-menuitem" data-value="2" role="menuitem" id=":9d" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Une fois par jour maximum</div></div>
+: <div class="goog-menuitem" data-value="3" role="menuitem" id=":9e" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Une fois par semaine maximum</div></div>
+sami.chakroun@ept.ucar.tn: <div class="goog-menuitem goog-menuitem-highlight" role="menuitem" id=":8k" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">sami.chakroun@ept.ucar.tn</div></div>
+Flux RSS: <div class="goog-menuitem" role="menuitem" id=":8l" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Flux&nbsp;RSS</div></div>

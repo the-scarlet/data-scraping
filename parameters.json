@@ -1,0 +1,13 @@
+{
+    "instruments": [
+        "oil",
+        "crude"
+    ],
+    "keywords": [
+        "price",
+        "demand"
+    ],
+    "language": "anglais",
+    "region": "États-Unis",
+    "delivery": "Flux RSS"
+}

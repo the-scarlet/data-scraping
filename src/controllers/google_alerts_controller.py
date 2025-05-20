@@ -1,5 +1,5 @@
 import pandas as pd
-from ..services.google_alerts_service import google_alerts_service
+from ..services.google_alerts_service.google_alerts_service import google_alerts_service
 from ..utils.error_util import error_util
 
 

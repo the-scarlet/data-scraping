@@ -1,17 +1,12 @@
 from datetime import datetime
 import json
-from src.services.google_alerts_service import google_alerts_service
-from src.config import (
-    GOOGLE_COOKIES_FILE,
-    FREQUENCY,
-    SOURCE,
-    LANGUAGE,
-    VOLUME,
-    REGION,
-    DELIVERY,
+from src.services.google_alerts_service.google_alerts_service import (
+    GoogleAlertsService,
 )
+from config.config import AppConfig
 
-service = google_alerts_service()
+service = GoogleAlertsService()
+config = AppConfig()
 instruments = ["oil", "crude"]
 keywords = ["price", "demand"]
 frequency = "Une fois par semaine maximum"
@@ -20,7 +15,7 @@ source = "Web"
 
 
 def test_check_cookies_validity():
-    with open(GOOGLE_COOKIES_FILE, "r") as f:
+    with open(config.cookies_path, "r") as f:
         cookies = json.load(f)
     current_time = datetime.now().timestamp()
     for cookie in cookies:
@@ -35,6 +30,13 @@ def test_check_cookies_validity():
 
 def test_set_alert():
     response = service.set_alert(
-        instruments, keywords, FREQUENCY, SOURCE, LANGUAGE, REGION, VOLUME, DELIVERY
+        instruments,
+        keywords,
+        config.frequency,
+        config.source,
+        config.language,
+        config.region,
+        config.volume,
+        config.delivery,
     )
     assert isinstance(response, str)

@@ -1,6 +1,8 @@
-from src.services.google_alerts_service import google_alerts_service
+from src.services.google_alerts_service.google_alerts_service import (
+    GoogleAlertsService,
+)
 
-service = google_alerts_service()
+service = GoogleAlertsService()
 search_term = instruments = ["oil", "crude"]
 keywords = ["price", "demand"]
 

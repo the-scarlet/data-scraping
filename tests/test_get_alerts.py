@@ -1,6 +1,8 @@
-from src.services.google_alerts_service import google_alerts_service
+from src.services.google_alerts_service.google_alerts_service import (
+    GoogleAlertsService,
+)
 
-service = google_alerts_service()
+service = GoogleAlertsService()
 
 
 def test_get_existing_google_alerts():

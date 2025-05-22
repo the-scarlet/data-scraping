@@ -2,7 +2,7 @@ from datetime import datetime
 import feedparser
 
 
-class feed_parser:
+class FeedParser:
     def __init__(self):
         self.parser = feedparser
 
@@ -13,8 +13,10 @@ class feed_parser:
             news_caractersitics = dict()
             news_caractersitics["Title"] = entry.title
             news_caractersitics["Direct URL"] = entry.link
+            news_caractersitics["TIMESTAMP"] = datetime.now().timestamp()
             # Casting date into time stamp
             dt = datetime.strptime(entry.published, "%Y-%m-%dT%H:%M:%SZ")
             news_caractersitics["Published"] = dt.timestamp()
+
             news.append(news_caractersitics)
         return news

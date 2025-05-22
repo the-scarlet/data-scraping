@@ -1,13 +1,14 @@
-from src.config import LOG_LEVEL
+from config.config import AppConfig
 from src.utils.logger import configure_logging
-from .cli_util import cli_util
+from cli.cli_util import CliUtil
 import asyncio
 
-configure_logging(level=LOG_LEVEL)
+config = AppConfig()
+configure_logging(level=config.log_level)
 
 
 async def main():
-    cli = cli_util()
+    cli = CliUtil()
     await cli.execute_command()
 
 

@@ -4,7 +4,7 @@ import os
 from src.utils.error_util import ErrorUtil
 from src.utils.selenium_util.selenium_util import SeleniumUtil
 from src.utils.feed_parser_util import FeedParser
-from time import sleep
+from time import sleep, time
 import pandas as pd
 from io import BytesIO
 import json
@@ -19,7 +19,7 @@ class GoogleAlertsProcessing:
         self.feed_parser = FeedParser()
 
     def get_active_option_dropdown_items(
-        self, selenium, option_class, available_options
+        self, selenium, option_class, user_option, available_options
     ):
 
         # Find all menu items by their role
@@ -35,26 +35,41 @@ class GoogleAlertsProcessing:
             for item in menu_items:
                 # Get the text content
                 # text = item.text
-                content_div = item.find_element(
-                    "xpath", ".//div[@class='goog-menuitem-content']"
+                content_div = selenium.wait_for(
+                    "element_to_be_clickable",
+                    "by_xpath",
+                    ".//div[@class='goog-menuitem-content']",
                 )
+                # content_div = item.find_element(
+                #     "xpath", ".//div[@class='goog-menuitem-content']"
+                # )
                 text = content_div.text
-                data_value = item.get_attribute("data-value")
-                id = item.get_attribute("id")
-                # logger.info(text + str(data_value))
-                if text:
-                    items_info[text] = {"data-value": data_value, "id": id}
-            available_options[option_class] = items_info
-        return items_info
+
+                logger.info(text)
+                if text == user_option:
+                    # data_value = item.get_attribute("data-value")
+                    id = item.get_attribute("id")
+                    items_info[text] = {
+                        # "data-value": data_value,
+                        "id": id
+                    }
+                    available_options[option_class] = items_info
+                    return items_info
+            logger.info(
+                f"there is no {option_class} called {user_option}. Try to check that."
+            )
+            exit(1)
 
     def set_option(self, selenium, option_class, user_option, available_options):
         # logger.info("available options:" + str(available_options))
+        t = time()
         selenium.click_button("by_class", option_class + "_select")
         logger.info("collecting valid options for " + option_class)
         valid_options2position = self.get_active_option_dropdown_items(
-            selenium, option_class, available_options
+            selenium, option_class, user_option, available_options
         )
         logger.info("done collecting valid options")
+        logger.info(f"Took us {time()-t} s")
         sleep(2)  # Brief pause for dropdown animation
         logger.info(
             f"user option and id {user_option}: {valid_options2position[user_option]["id"]}"

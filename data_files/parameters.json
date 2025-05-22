@@ -1,11 +1,9 @@
 {
     "instruments": [
-        "oil",
-        "crude"
+        "oil"
     ],
     "keywords": [
-        "price",
-        "demand"
+        "price"
     ],
     "language": "anglais",
     "region": "États-Unis",

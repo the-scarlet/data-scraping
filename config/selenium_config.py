@@ -3,15 +3,17 @@ from dataclasses import dataclass, field
 from typing import Dict, Any
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from pathlib import Path
 
 
 @dataclass(frozen=True)
 class SeleniumConfig:
     """Configuration for Selenium WebDriver setup"""
 
+    project_root = Path(__file__).parent.parent
     # Path configuration
-    chrome_binary_location: str = os.path.abspath(
-        os.path.join("src", "utils", "selenium_util", "chrome-win64", "chrome.exe")
+    chrome_binary_location: str = str(
+        project_root / "src" / "utils" / "selenium_util" / "chrome-win64" / "chrome.exe"
     )
 
     # Timeout settings
@@ -47,7 +49,7 @@ class SeleniumConfig:
         """Validate configuration on initialization"""
         # Set environment variables
         os.environ["SE_AVOID_STATS"] = "true"
-
+        print(self.chrome_binary_location)
         # Verify Chrome binary exists
         if not os.path.exists(self.chrome_binary_location):
             raise FileNotFoundError(

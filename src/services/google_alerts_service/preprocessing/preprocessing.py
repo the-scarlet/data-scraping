@@ -62,7 +62,8 @@ class GoogleAlertsPreprocessing:
             )
         except TimeoutException:
             selenium.close_driver()
-            return "No Active Alerts Have Been Found"
+            logger.info("No Active Alerts Have Been Found")
+            exit(0)
 
     def are_there_rss_alerts(self, selenium):
         self.are_there_google_alerts(selenium)

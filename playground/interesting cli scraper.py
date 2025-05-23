@@ -23,7 +23,9 @@ class CustomArgumentParser(argparse.ArgumentParser):
 
 class CliScrapper:
     def __init__(self):
-        self.parser = CustomArgumentParser(description="Data scraper")
+        self.parser = CustomArgumentParser(
+            description="Data scraper"
+        )  # argparse.ArgumentParser(description="Data scraper")
         self.subparsers = self.parser.add_subparsers(dest="mode", help="Scraping mode")
 
     def set_cookie_parser(self):
@@ -36,13 +38,15 @@ class CliScrapper:
             "--instruments",
             type=str,
             nargs="+",
+            required=True,
             help=f"instruments",
         )
         specific_parser.add_argument(
             "-k",
             "--keywords",
             type=str,
-            nargs="+",
+            nargs="*",
+            required=True,
             help=f"keywords",
         )
         specific_parser.add_argument(
@@ -58,7 +62,6 @@ class CliScrapper:
             "--source",
             type=str,
             default=config.source,
-            choices=["Automatic", "Finance"],
             help=f"Alert source (default: {config.source})",
         )
 
@@ -83,7 +86,6 @@ class CliScrapper:
             "--volume",
             type=str,
             default=config.volume,
-            choices=["Seulement les meilleurs résultats", "Tous les résultats"],
             help=f"Results volume (default: {config.volume})",
         )
         specific_parser.add_argument(
@@ -113,13 +115,15 @@ class CliScrapper:
             "--instruments",
             type=str,
             nargs="+",
+            required=True,
             help=f"instruments",
         )
         specific_parser.add_argument(
             "-k",
             "--keywords",
             type=str,
-            nargs="+",
+            nargs="*",
+            required=True,
             help=f"keywords",
         )
         specific_parser.add_argument(
@@ -133,9 +137,9 @@ class CliScrapper:
     def json_override(self, args):
         with open(args.json, "r", encoding="utf-8") as f:
             json_args = json.load(f)
-
+        valid_flags = self.get_flags_for_command(args.mode)
         for key, value in json_args.items():
-            if hasattr(args, key):  # Only override existing arguments
+            if key in valid_flags.keys():  # Only override existing arguments
                 setattr(args, key, value)
             else:
                 print(f"Warning: Ignoring unknown JSON key '{key}'")
@@ -181,37 +185,102 @@ class CliScrapper:
                 exit(1)
 
         # Are required flags provided by the user?
-        required_flags = set([valid_flag for valid_flag in valid_flags.keys()]) & {
-            "instruments",
-            "keywords",
-        }
-        logger.info(required_flags)
+        required_flags = [
+            valid_flag
+            for valid_flag in valid_flags.keys()
+            if valid_flags[valid_flag]["required"]
+        ]
         for required_flag in required_flags:
-            logger.info(required_flag)
-            if (required_flag not in user_flags) or (
-                getattr(args, required_flag) == None
-            ):
+            if required_flag not in user_flags:
                 logger.info(
                     f"{required_flag} is a required flag for the command {args.mode}. Use -h for more info"
                 )
                 exit(1)
 
+    def _cli_args_to_dict(self):
+        """Convert CLI args to dict, normalizing short flags to long flags."""
+        args_dict = {}
+        i = 1  # Skip script name (sys.argv[0])
+        while i < len(sys.argv):
+            arg = sys.argv[i]
+            if arg.startswith(("-", "--")):
+                # Case 1: --flag=value
+                if "=" in arg:
+                    flag, value = arg.split("=", 1)
+                    i += 1
+                # Case 2: --flag value
+                else:
+                    flag = arg
+                    # Check if next arg is a value (not another flag)
+                    if i + 1 < len(sys.argv) and not sys.argv[i + 1].startswith(
+                        ("-", "--")
+                    ):
+                        value = sys.argv[i + 1]
+                        i += 2
+                    else:
+                        value = True  # Boolean flag (e.g., "-v")
+                        i += 1
+
+                # Normalize short flags to long flags (e.g., "-s" → "--statement")
+                if flag in self.parser._option_string_actions:
+                    action = self.parser._option_string_actions[flag]
+                    long_flag = action.option_strings[-1]  # Get longest flag
+                    args_dict[long_flag] = value
+                else:
+                    args_dict[flag] = value  # Unknown flags
+            else:
+                i += 1  # Skip non-flag args (e.g., command name)
+        return args_dict
+
+    def dict_to_cli_args(self, args_dict):
+        args_list = []
+        for flag, value in args_dict.items():
+            if value is True:  # Boolean flag (e.g., "--verbose")
+                args_list.append(flag)
+            else:
+                args_list.extend([flag, str(value)])
+        return args_list
+
     def handle_args(self):
+        # Step 1: Convert CLI args to normalized dict (long flags)
+        cli_args = self._cli_args_to_dict()
+        logger.info(f"cli args{cli_args}")
+        # Step 2: Load JSON config if provided (override CLI)
+        if hasattr(self.parser, "json") and cli_args.get("--json"):
+            json_args = self._load_json_config(cli_args["--json"])
+            # Merge CLI and JSON (JSON takes priority)
+            merged_args = {**cli_args, **json_args}
+        else:
+            merged_args = cli_args
+
+        # Step 3: Convert merged args back to sys.argv format
+        sys.argv = [sys.argv[0]] + self._dict_to_cli_args(merged_args)
+
+        # Step 4: Parse final args with argparse
         args = self.parser.parse_args()
-        logger.info(args)
-        # Exit if no mode was selected
+
+        # Validate mode and other flags
         if not args.mode:
             self.parser.print_help()
             return 1
-        if not (hasattr(args, "json")):
-            pass
-        elif args.json:
-            args = self.json_override(args)
-        # Calculate the result based on the selected mode
-
-        logger.info(args)
         self.validate_flags(args)
         return args
+
+    def _load_json_config(self, json_path):
+        """Load JSON and convert keys to long flags (e.g., "statement" → "--statement")."""
+        with open(json_path) as f:
+            json_config = json.load(f)
+        return {f"--{k}": v for k, v in json_config.items()}
+
+    def _dict_to_cli_args(self, args_dict):
+        """Convert dict back to CLI args list (e.g., {"--flag": "value"} → ["--flag", "value"])."""
+        args_list = []
+        for flag, value in args_dict.items():
+            if value is True:  # Boolean flag
+                args_list.append(flag)
+            else:
+                args_list.extend([flag, str(value)])
+        return args_list
 
     async def execute_command(self):
         self.set_cookie_parser()
@@ -220,7 +289,9 @@ class CliScrapper:
         self.rm_alert_parser()
         self.get_rss_link_parser()
         args = self.handle_args()
-
+        logger.info(
+            f"Here are the flags of the command {args.mode}: {self.get_flags_for_command(args.mode)}"
+        )
         if args.mode == "set-cookies":
             result = await google_alerts_controller.get_cookies()
         elif args.mode == "set-alert":

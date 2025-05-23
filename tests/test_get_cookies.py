@@ -1,12 +1,8 @@
 from datetime import datetime
 import json
-from src.services.google_alerts_service.google_alerts_service import (
-    GoogleAlertsService,
-)
 from config.config import AppConfig
 import pytest
 
-service = GoogleAlertsService()
 config = AppConfig()
 
 

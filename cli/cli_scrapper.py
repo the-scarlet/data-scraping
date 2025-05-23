@@ -1,14 +1,15 @@
 import argparse
 import json
-from src.config import FREQUENCY, SOURCE, LANGUAGE, REGION, VOLUME, DELIVERY
+from config.config import AppConfig
 from src.controllers import google_alerts_controller
 import logging
 
 
 logger = logging.getLogger("Data-scraping")
+config = AppConfig()
 
 
-class cli_util:
+class CliScrapper:
     def __init__(self):
         self.parser = argparse.ArgumentParser(description="Data scraper")
         self.subparsers = self.parser.add_subparsers(dest="mode", help="Scraping mode")
@@ -36,47 +37,47 @@ class cli_util:
             "-f",
             "--frequency",
             type=str,
-            default=FREQUENCY,
-            help=f"Alert frequency (default: {FREQUENCY})",
+            default=config.frequency,
+            help=f"Alert frequency (default: {config.frequency})",
         )
 
         specific_parser.add_argument(
             "-s",
             "--source",
             type=str,
-            default=SOURCE,
-            help=f"Alert source (default: {SOURCE})",
+            default=config.source,
+            help=f"Alert source (default: {config.source})",
         )
 
         specific_parser.add_argument(
             "-l",
             "--language",
             type=str,
-            default=LANGUAGE,
-            help=f"Alert language (default: {LANGUAGE})",
+            default=config.language,
+            help=f"Alert language (default: {config.language})",
         )
 
         specific_parser.add_argument(
             "-r",
             "--region",
             type=str,
-            default=REGION,
-            help=f"Alert region (default: {REGION})",
+            default=config.region,
+            help=f"Alert region (default: {config.region})",
         )
 
         specific_parser.add_argument(
             "-v",
             "--volume",
             type=str,
-            default=VOLUME,
-            help=f"Results volume (default: {VOLUME})",
+            default=config.volume,
+            help=f"Results volume (default: {config.volume})",
         )
         specific_parser.add_argument(
             "-d",
             "--delivery",
             type=str,
-            default=DELIVERY,
-            help=f"Results delivery format (default: {DELIVERY})",
+            default=config.delivery,
+            help=f"Results delivery format (default: {config.delivery})",
         )
         specific_parser.add_argument(
             "-j",

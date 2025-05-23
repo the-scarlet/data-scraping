@@ -41,7 +41,6 @@ class GoogleAlertsProcessing:
                     "xpath", ".//div[@class='goog-menuitem-content']"
                 )
                 text = content_div.text
-
                 logger.info(text)
                 if text == user_option:
                     # data_value = item.get_attribute("data-value")
@@ -116,3 +115,13 @@ class GoogleAlertsProcessing:
 
         # Concatenate the new data
         return pd.concat([old_df, new_df], ignore_index=True)
+
+    def get_active_alerts(self, selenium):
+        alerts = selenium.get_elements("by_css", "li.alert_instance")
+        existing_alerts = set()
+        for alert in alerts:
+            alert_name = alert.find_element(
+                selenium.map_selector("by_css"), ".query_div > span"
+            ).text
+            existing_alerts.add(alert_name)
+        return existing_alerts

@@ -91,7 +91,7 @@ class GoogleAlertsService:
         volume,
         delivery,
     ):
-        search_terms = self.preprocessing.commodities(instruments, keywords)
+        search_terms = set(self.preprocessing.commodities(instruments, keywords))
         options = {
             "frequency": frequency,
             "source": source,
@@ -102,7 +102,9 @@ class GoogleAlertsService:
         }
         available_options = dict()
         self.preprocessing.google_login(self._selenium)
-        for search_term in search_terms:
+        existing_alerts = self.processing.get_active_alerts(self._selenium)
+        logger.info(f"You already have these active alerts:{existing_alerts}")
+        for search_term in search_terms - existing_alerts:
             self._selenium.set_text_input_value(
                 "by_css", "#query_div input[type='text']", search_term
             )
@@ -120,15 +122,9 @@ class GoogleAlertsService:
     def get_existing_alerts(self):
         self.preprocessing.google_login(self._selenium)
         self.preprocessing.are_there_google_alerts(self._selenium)
-        alerts = self._selenium.get_elements("by_css", "li.alert_instance")
-        alert_data = set()
-        for alert in alerts:
-            alert_name = alert.find_element(
-                self._selenium.map_selector("by_css"), ".query_div > span"
-            ).text
-            alert_data.add(alert_name)
+        existing_alerts = self.processing.get_active_alerts(self._selenium)
         self._selenium.close_driver()
-        return str(alert_data)
+        return existing_alerts
 
     def delete_existing_alerts(self, instruments, keywords):
         self.preprocessing.google_login(self._selenium)

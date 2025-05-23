@@ -12,7 +12,7 @@ config = AppConfig()
 
 @pytest.mark.order(1)
 def test_check_cookies_validity():
-    with open(config.cookies_path, "r") as f:
+    with open(GOOGLE_COOKIES_FILE, "r") as f:
         cookies = json.load(f)
     current_time = datetime.now().timestamp()
     for cookie in cookies:

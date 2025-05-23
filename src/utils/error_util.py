@@ -3,7 +3,7 @@ import logging
 logger = logging.getLogger("Data-scraping")
 
 
-class ErrorUtil:
+class error_util:
     @staticmethod
     def handle_error(error, status):
         logger.error(f"{status} error: {error}")

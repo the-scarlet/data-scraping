@@ -2,30 +2,26 @@ import asyncio
 import logging
 import os
 from selenium.common.exceptions import TimeoutException
-from config.config import AppConfig
-from src.utils.error_util import ErrorUtil
-from src.utils.selenium_util.selenium_util import SeleniumUtil
-from src.utils.feed_parser_util import FeedParser
+from ...config import GOOGLE_COOKIES_FILE, ARTEFACTS_DIRECTORY, HOME_PATH, DEFAULT_ENTRY
+from ...utils.error_util import error_util
+from ...utils.selenium_util.selenium_util import selenium_util
+from ...utils.feed_parser_util import feed_parser
 from time import sleep
 import pandas as pd
 from io import BytesIO
 import json
-from src.services.google_alerts_service.preprocessing.preprocessing import (
-    GoogleAlertsPreprocessing,
-)
-from src.services.google_alerts_service.processing.processing import (
-    GoogleAlertsProcessing,
-)
+from .preprocessing.preprocessing import google_alerts_preprocessing
+from .processing.processing import google_alerts_processing
 
 logger = logging.getLogger("Data-scraping")
-config = AppConfig()
 
 
-class GoogleAlertsService:
+class google_alerts_service:
     def __init__(self):
-        self._selenium = SeleniumUtil()
-        self.preprocessing = GoogleAlertsPreprocessing()
-        self.processing = GoogleAlertsProcessing()
+        self._selenium = selenium_util()
+        self.feed_parser = feed_parser()
+        self.preprocessing = google_alerts_preprocessing()
+        self.processing = google_alerts_processing()
 
     def save_session_cookies(self):
 
@@ -48,7 +44,8 @@ class GoogleAlertsService:
         # # Save cookies to a JSON file
         cookies = self._selenium.driver.get_cookies()
         # create folder
-        with open(config.cookies_path, "w") as file:
+        os.makedirs(os.path.join(HOME_PATH, ARTEFACTS_DIRECTORY), exist_ok=True)
+        with open(GOOGLE_COOKIES_FILE, "w") as file:
             json.dump(cookies, file)
 
         print("Cookies saved successfully!")
@@ -108,7 +105,7 @@ class GoogleAlertsService:
             )
             self._selenium.click_button("by_css", "span.show_options[role='button']")
             for option in options:
-                if options.get(option) != config.default_entry:
+                if options.get(option) != DEFAULT_ENTRY:
                     self.processing.set_option(
                         self._selenium, option, options.get(option), available_options
                     )
@@ -153,13 +150,12 @@ class GoogleAlertsService:
         return f"Removed Alerts: {removed_alerts}\nRemaining Alerts: {remaining_alerts}"
 
     def get_rss_news(self):
-
-        old_news = pd.read_excel(
-            config.excel_path
-        )  # pd.read_parquet(config.parquet_path, engine='pyarrow')
         self.preprocessing.google_login(self._selenium)
-        self.preprocessing.are_there_rss_alerts(self._selenium)
+        self.preprocessing.are_there_google_alerts(self._selenium)
         rss_links = self.processing.get_rss_links_list(self._selenium)
         self._selenium.close_driver()
-        rss_feed = self.processing.update_rss_db(old_news, rss_links)
+        rss_feed = []
+        for rss_link in rss_links:
+            rss_element = self.feed_parser.parse_rss(rss_link)
+            rss_feed.extend(rss_element)
         return rss_feed

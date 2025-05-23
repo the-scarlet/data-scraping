@@ -3,17 +3,21 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import TimeoutException
-from src.utils.error_util import ErrorUtil
-from config.selenium_config import SeleniumConfig
+from ...utils.error_util import error_util
+from ...utils.selenium_util.selenium_config import (
+    CHROME_BINARY_LOCATION,
+    TIMEOUT,
+    SELECTORS,
+    CHROMIUM_COUNTRY_LANGUAGE,
+    EXPECTED_CONDITION,
+)
 
-selenium_config = SeleniumConfig()
 
-
-class SeleniumUtil:
+class selenium_util:
     def __init__(self):
         # Set path to your Chrome binary
         chrome_options = Options()
-        chrome_options.binary_location = selenium_config.chrome_binary_location
+        chrome_options.binary_location = CHROME_BINARY_LOCATION
 
         # Important flags to prevent login prompts
         chrome_options.add_argument("--disable-popup-blocking")
@@ -34,9 +38,7 @@ class SeleniumUtil:
         chrome_options.add_experimental_option("useAutomationExtension", False)
 
         # Set language preferences
-        chrome_options.add_argument(
-            f"--lang={selenium_config.chromium_country_language}"
-        )
+        chrome_options.add_argument(f"--lang={CHROMIUM_COUNTRY_LANGUAGE}")
 
         # If needed, use a completely temporary profile
         # chrome_options.add_argument("--user-data-dir=./temp_profile")
@@ -51,17 +53,17 @@ class SeleniumUtil:
         self.driver.get(url)
 
     def map_selector(self, selection_method):
-        return selenium_config.selectors[selection_method]
+        return SELECTORS[selection_method]
 
     def map_selenium_condition(self, condition):
-        return selenium_config.expected_conditions[condition]
+        return EXPECTED_CONDITION[condition]
 
     def wait_for(
         self,
         wait_condition,
         selection_method,
         locator,
-        timeout=selenium_config.timeout,
+        timeout=TIMEOUT,
         has_special_error_handler=False,
     ):
         selector = self.map_selector(selection_method)
@@ -76,28 +78,26 @@ class SeleniumUtil:
                     condition((selector, locator))
                 )
             except TimeoutException as e:
-                ErrorUtil.handle_error(
+                error_util.handle_error(
                     e,
                     "This exception is the result of not finding an element in the page.",
                 )
                 exit(1)
         return element
 
-    def set_text_input_value(
-        self, selection_method, locator, text, timeout=selenium_config.timeout
-    ):
+    def set_text_input_value(self, selection_method, locator, text, timeout=TIMEOUT):
         text_input = self.wait_for(
             "element_to_be_clickable", selection_method, locator, timeout
         )
         text_input.send_keys(text)
 
-    def click_button(self, selection_method, locator, timeout=selenium_config.timeout):
+    def click_button(self, selection_method, locator, timeout=TIMEOUT):
         button = self.wait_for(
             "element_to_be_clickable", selection_method, locator, timeout
         )
         button.click()
 
-    def get_elements(self, selection_method, locator, timeout=selenium_config.timeout):
+    def get_elements(self, selection_method, locator, timeout=TIMEOUT):
         selector = self.map_selector(selection_method)
         self.wait_for(
             "presence_of_all_elements_located", selection_method, locator, timeout

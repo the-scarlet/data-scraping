@@ -11,6 +11,6 @@ from bs4 import BeautifulSoup
 # print("RSS Feed:", rss_link)
 
 
-class BS:
+class bs:
     def __init__(self):
         pass

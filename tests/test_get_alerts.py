@@ -3,7 +3,7 @@ from src.services.google_alerts_service.google_alerts_service import (
 )
 import pytest
 
-service = GoogleAlertsService()
+service = google_alerts_service()
 
 
 @pytest.mark.order(3)

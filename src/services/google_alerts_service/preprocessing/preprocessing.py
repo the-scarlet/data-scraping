@@ -1,28 +1,32 @@
 import asyncio
 import logging
 import os
-from config.config import AppConfig
-from src.utils.error_util import ErrorUtil
-from src.utils.selenium_util.selenium_util import SeleniumUtil
-from src.utils.feed_parser_util import FeedParser
+from ....config import (
+    GOOGLE_COOKIES_FILE,
+    ARTEFACTS_DIRECTORY,
+    HOME_PATH,
+    DEFAULT_ENTRY,
+)
+from ....utils.error_util import error_util
+from ....utils.selenium_util.selenium_util import selenium_util
+from ....utils.feed_parser_util import feed_parser
 from time import sleep
 import pandas as pd
 from io import BytesIO
 import json
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
+from selenium.common.exceptions import TimeoutException
 
 logger = logging.getLogger("Data-scraping")
-config = AppConfig()
 
 
-class GoogleAlertsPreprocessing:
+class google_alerts_preprocessing:
     def google_login(self, selenium):
         # Go to the website (login page not needed)
         selenium.driver.get("https://www.google.com/alerts")
 
         # Load saved cookies
         try:
-            with open(config.cookies_path, "r") as file:
+            with open(GOOGLE_COOKIES_FILE, "r") as file:
                 cookies = json.load(file)
         except:
             logger.info(

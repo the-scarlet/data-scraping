@@ -5,6 +5,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import TimeoutException
 from src.utils.error_util import ErrorUtil
 from config.selenium_config import SeleniumConfig
+from src.utils.error_util import ErrorUtil
 
 selenium_config = SeleniumConfig()
 
@@ -51,10 +52,16 @@ class SeleniumUtil:
         self.driver.get(url)
 
     def map_selector(self, selection_method):
-        return selenium_config.selectors[selection_method]
+        try:
+            return selenium_config.selectors[selection_method]
+        except Exception as e:
+            return ErrorUtil.handle_error(e, "Error in map selenium selector")
 
     def map_selenium_condition(self, condition):
-        return selenium_config.expected_conditions[condition]
+        try:
+            return selenium_config.expected_conditions[condition]
+        except Exception as e:
+            return ErrorUtil.handle_error(e, "Error in map selenium condition")
 
     def wait_for(
         self,
@@ -64,46 +71,58 @@ class SeleniumUtil:
         timeout=selenium_config.timeout,
         has_special_error_handler=False,
     ):
-        selector = self.map_selector(selection_method)
-        condition = self.map_selenium_condition(wait_condition)
-        if has_special_error_handler:
-            element = WebDriverWait(self.driver, timeout).until(
-                condition((selector, locator))
-            )
-        else:
-            try:
+        try:
+            selector = self.map_selector(selection_method)
+            condition = self.map_selenium_condition(wait_condition)
+            if has_special_error_handler:
                 element = WebDriverWait(self.driver, timeout).until(
                     condition((selector, locator))
                 )
-            except TimeoutException as e:
-                ErrorUtil.handle_error(
-                    e,
-                    "This exception is the result of not finding an element in the page.",
-                )
-                exit(1)
-        return element
+            else:
+                try:
+                    element = WebDriverWait(self.driver, timeout).until(
+                        condition((selector, locator))
+                    )
+                except TimeoutException as e:
+                    ErrorUtil.handle_error(
+                        e,
+                        "This exception is the result of not finding an element in the page.",
+                    )
+                    exit(1)
+            return element
+        except Exception as e:
+            return ErrorUtil.handle_error(e, "Error in wait for")
 
     def set_text_input_value(
         self, selection_method, locator, text, timeout=selenium_config.timeout
     ):
-        text_input = self.wait_for(
-            "element_to_be_clickable", selection_method, locator, timeout
-        )
-        text_input.send_keys(text)
+        try:
+            text_input = self.wait_for(
+                "element_to_be_clickable", selection_method, locator, timeout
+            )
+            text_input.send_keys(text)
+        except Exception as e:
+            return ErrorUtil.handle_error(e, "Error in set selenium text")
 
     def click_button(self, selection_method, locator, timeout=selenium_config.timeout):
-        button = self.wait_for(
-            "element_to_be_clickable", selection_method, locator, timeout
-        )
-        button.click()
+        try:
+            button = self.wait_for(
+                "element_to_be_clickable", selection_method, locator, timeout
+            )
+            button.click()
+        except Exception as e:
+            return ErrorUtil.handle_error(e, "Error in click selenium button")
 
     def get_elements(self, selection_method, locator, timeout=selenium_config.timeout):
-        selector = self.map_selector(selection_method)
-        self.wait_for(
-            "presence_of_all_elements_located", selection_method, locator, timeout
-        )
-        elements = self.driver.find_elements(selector, locator)
-        return elements
+        try:
+            selector = self.map_selector(selection_method)
+            self.wait_for(
+                "presence_of_all_elements_located", selection_method, locator, timeout
+            )
+            elements = self.driver.find_elements(selector, locator)
+            return elements
+        except Exception as e:
+            return ErrorUtil.handle_error(e, "Error in get selenium elements")
 
     def close_driver(self):
         self.driver.close()

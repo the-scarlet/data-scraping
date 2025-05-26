@@ -8,3 +8,4 @@ build
 feedparser
 pyarrow
 pytest-ordering
+tqdm

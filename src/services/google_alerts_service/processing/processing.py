@@ -87,44 +87,55 @@ class GoogleAlertsProcessing:
 
     def get_rss_links_list(self, selenium):
         try:
-            try:
-                link_elements = selenium.wait_for(
-                    "presence_of_all_elements_located",
-                    "by_css",
-                    "div.alert_buttons a[href^='/alerts/feeds/']",
-                    has_special_error_handler=True,
-                )
-            except TimeoutException as e:
-                return "No RSS feed has been found"
-            rss_links = set()
-            for link_element in link_elements:
+            delivery_settings = selenium.get_elements("by_class", "delivery_settings")
+            topics2links = dict()
+            for delivery_div in delivery_settings:
+                try:
+                    # Find the RSS link (the <a> tag containing the RSS icon)
+                    rss_link = delivery_div.find_element(
+                        "css selector", "a[href*='/alerts/feeds/']"
+                    )
+
+                    # Check if it has href (it should, but good to verify)
+                    href = rss_link.get_attribute("href")
+
+                    if href:
+                        # Get the query text (the span with the search term)
+                        query_span = delivery_div.find_element(
+                            "css selector", ".query_div span[tabindex='0']"
+                        )
+                        topic = query_span.text
+
+                        topics2links.setdefault(topic, []).append(href)
+                    logger.info("topic: " + str(topic) + " href: " + str(href))
+                except Exception as e:
+                    logger.info(f"No RSS feed available or error: {e}")
                 # Extract the href attribute
-                rss_feed_path = link_element.get_attribute("href")
-                rss_links.add(rss_feed_path)
-            logger.info(len(rss_links))
-            return rss_links
+            return topics2links
         except Exception as e:
             return ErrorUtil.handle_error(e, "Error in get RSS links list")
 
     def update_rss_db(self, old_df, rss_links):
         try:
             new_rss_feed = []
-            for rss_link in rss_links:
-                rss_element = self.feed_parser.parse_rss(rss_link)
-                new_rss_feed.extend(rss_element)
-            try:
-                already_existing_titles = old_df["Title"].values
-            except KeyError:
-                already_existing_titles = []
-            newly_added_rss_feed = [
-                rss_feed
-                for rss_feed in new_rss_feed
-                if rss_feed["Title"] not in already_existing_titles
-            ]
-            new_df = pd.DataFrame(newly_added_rss_feed)
+            for topic in rss_links.keys():
+                for rss_link in rss_links[topic]:
+                    rss_element = self.feed_parser.parse_rss(rss_link, topic=topic)
+                    new_rss_feed.extend(rss_element)
+                try:
+                    already_existing_titles = old_df["Title"].values
+                except KeyError:
+                    already_existing_titles = []
+                newly_added_rss_feed = []
+                for rss_feed in new_rss_feed:
+                    if rss_feed["Title"] not in already_existing_titles:
+                        newly_added_rss_feed.append(rss_feed)
+                    else:
+                        break
+                new_df = pd.DataFrame(newly_added_rss_feed)
 
             # Concatenate the new data
-            return pd.concat([old_df, new_df], ignore_index=True)
+            return new_df
         except Exception as e:
             return ErrorUtil.handle_error(e, "Error in updating RSS DB")
 

@@ -227,25 +227,26 @@ class CliScrapper:
             return ErrorUtil.handle_error(e, "Error in handle args")
 
     async def execute_command(self):
-        try:
-            self.set_cookie_parser()
-            self.set_alert_parser()
-            self.get_alerts_parser()
-            self.rm_alert_parser()
-            self.get_rss_link_parser()
-            args = self.handle_args()
+        # try:
+        self.set_cookie_parser()
+        self.set_alert_parser()
+        self.get_alerts_parser()
+        self.rm_alert_parser()
+        self.get_rss_link_parser()
+        args = self.handle_args()
 
-            if args.mode == "set-cookies":
-                result = await google_alerts_controller.get_cookies()
-            elif args.mode == "set-alert":
-                result = await google_alerts_controller.set_google_alerts(args)
-            elif args.mode == "get-alerts":
-                result = await google_alerts_controller.get_existing_google_alerts()
-            elif args.mode == "rm-alert":
-                result = await google_alerts_controller.remove_google_alerts(args)
-            elif args.mode == "get-rss":
-                result = await google_alerts_controller.get_rss_links()
-            print(result)
-            return 0
-        except Exception as e:
-            return ErrorUtil.handle_error(e, "Error in execute command")
+        if args.mode == "set-cookies":
+            result = await google_alerts_controller.get_cookies()
+        elif args.mode == "set-alert":
+            result = await google_alerts_controller.set_google_alerts(args)
+        elif args.mode == "get-alerts":
+            result = await google_alerts_controller.get_existing_google_alerts()
+        elif args.mode == "rm-alert":
+            result = await google_alerts_controller.remove_google_alerts(args)
+        elif args.mode == "get-rss":
+            result = await google_alerts_controller.get_rss_links()
+        print(result)
+        return 0
+
+    # except Exception as e:
+    #     return ErrorUtil.handle_error(e, "Error in execute command")

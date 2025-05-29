@@ -131,7 +131,7 @@ class GoogleAlertsService:
                 self._selenium.click_button("by_id", "create_alert")
                 sleep(2)
             self._selenium.close_driver()
-            return f"Request processed successfully. You will get alerts for the terms {search_terms}."
+            return search_terms
         except Exception as e:
             return ErrorUtil.handle_error(e, "Error in set alert service")
 
@@ -167,20 +167,27 @@ class GoogleAlertsService:
                 else:
                     remaining_alerts.add(alert_name)
             self._selenium.close_driver()
-            return f"Removed Alerts: {removed_alerts}\nRemaining Alerts: {remaining_alerts}"
+            return {
+                "Removed Alerts": removed_alerts,
+                "Remaining Alerts": remaining_alerts,
+            }
         except Exception as e:
             return ErrorUtil.handle_error(e, "Error in delete alerts")
 
     def get_rss_news(self):
-        try:
-            old_news = pd.read_excel(
-                config.excel_path
-            )  # pd.read_parquet(config.parquet_path, engine='pyarrow')
-            self.preprocessing.google_login(self._selenium)
-            self.preprocessing.are_there_rss_alerts(self._selenium)
-            rss_links = self.processing.get_rss_links_list(self._selenium)
-            self._selenium.close_driver()
-            rss_feed = self.processing.update_rss_db(old_news, rss_links)
-            return rss_feed
-        except Exception as e:
-            return ErrorUtil.handle_error(e, "Error in get RSS news service")
+        # try:
+        old_news = self.preprocessing.last_rss()
+        # pd.read_excel(
+        #     config.excel_path
+        # )  # pd.read_parquet(config.parquet_path, engine='pyarrow')
+        logger.info("old news: ")
+        logger.info(old_news)
+        self.preprocessing.google_login(self._selenium)
+        self.preprocessing.are_there_rss_alerts(self._selenium)
+        rss_links = self.processing.get_rss_links_list(self._selenium)
+        self._selenium.close_driver()
+        rss_feed = self.processing.update_rss_db(old_news, rss_links)
+        return rss_feed
+
+    # except Exception as e:
+    #     return ErrorUtil.handle_error(e, "Error in get RSS news service")

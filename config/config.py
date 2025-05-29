@@ -13,11 +13,10 @@ class AppConfig:
     # Path configuration
     home_path: str = os.environ.get("HOME") or os.environ.get("USERPROFILE")
     artefacts_directory: str = "data_scraping_artefacts"
+    google_alerts_output_folder: str = "google_alerts_output"
 
     # File names (not paths)
     google_cookies_file: str = "cookies.json"
-    news_excel_file_name: str = "google_alerts_news.xlsx"
-    news_parquet_file_name: str = "google_alerts_news.parquet"
 
     # Google Alerts defaults
     default_entry: ClassVar[str] = "DEFAULT"
@@ -35,12 +34,10 @@ class AppConfig:
 
         # Create artefacts directory if it doesn't exist
         os.makedirs(self.artefacts_path, exist_ok=True)
-
+        os.makedirs(self.google_alerts_output_path, exist_ok=True)
         # Initialize files if they don't exist
         for file_name in [
             self.google_cookies_file,
-            self.news_excel_file_name,
-            self.news_parquet_file_name,
         ]:
             file_path = os.path.join(self.artefacts_path, file_name)
             if not os.path.exists(file_path):
@@ -69,3 +66,8 @@ class AppConfig:
     def parquet_path(self) -> str:
         """Get full path to Parquet file"""
         return os.path.join(self.artefacts_path, self.news_parquet_file_name)
+
+    @property
+    def google_alerts_output_path(self) -> str:
+        """Get full path to Parquet file"""
+        return os.path.join(self.artefacts_path, self.google_alerts_output_folder)

@@ -27,4 +27,4 @@ def test_set_alert():
         config.volume,
         config.delivery,
     )
-    assert isinstance(response, str)
+    assert response == {"oil price", "oil demand", "crude price", "crude demand"}

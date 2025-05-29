@@ -7,7 +7,7 @@ class FeedParser:
     def __init__(self):
         self.parser = feedparser
 
-    def parse_rss(self, url):
+    def parse_rss(self, url, topic=None):
         try:
             feed = self.parser.parse(url)
             news = []
@@ -19,7 +19,8 @@ class FeedParser:
                 # Casting date into time stamp
                 dt = datetime.strptime(entry.published, "%Y-%m-%dT%H:%M:%SZ")
                 news_caractersitics["Published"] = dt.timestamp()
-
+                if topic:
+                    news_caractersitics["Topic"] = topic
                 news.append(news_caractersitics)
             return news
         except Exception as e:

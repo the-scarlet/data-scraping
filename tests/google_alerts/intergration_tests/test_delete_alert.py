@@ -4,7 +4,7 @@ from src.services.google_alerts_service.google_alerts_service import (
 import pytest
 
 service = GoogleAlertsService()
-search_term = instruments = ["oil"]
+instruments = ["oil"]
 keywords = ["price"]
 
 
@@ -14,4 +14,4 @@ def test_remove_google_alerts():
         instruments,
         keywords,
     )
-    assert isinstance(response, str)
+    assert {"oil price"} <= response.get("Removed Alerts", {})

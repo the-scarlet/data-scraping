@@ -1,11 +1,17 @@
+import os
 import pandas as pd
 from src.services.google_alerts_service.google_alerts_service import (
     GoogleAlertsService,
 )
+from src.utils.logger import logging
 from src.utils.error_util import ErrorUtil
 from config.config import AppConfig
+from datetime import datetime
+from src.utils.dynamic_paths_util import DynamicPaths
 
 config = AppConfig()
+
+logger = logging.getLogger("Data-scraping")
 
 
 async def set_google_alerts(args):
@@ -22,7 +28,7 @@ async def set_google_alerts(args):
             args.volume,
             args.delivery,
         )
-        return response
+        return f"Request processed successfully. You will get alerts for the terms {response}."
 
     except Exception as e:
         return ErrorUtil.handle_error(e, "Error in set alert controller")
@@ -69,13 +75,29 @@ async def get_cookies():
 
 
 async def get_rss_links():
-    try:
-        _scraper = GoogleAlertsService()
-        results = _scraper.get_rss_news()
-
+    # try:
+    _scraper = GoogleAlertsService()
+    results = _scraper.get_rss_news()
+    if results.empty:
+        return "There is no new RSS feed, try again later"
+    for topic in results["Topic"].unique():
+        # Full path
+        full_path = DynamicPaths().path(topic)
+        os.makedirs(full_path, exist_ok=True)
         # Save to Excel/ Parquet
-        results.to_excel(config.excel_path, index=False)
-        results.to_parquet(config.parquet_path, engine="pyarrow")
-        return "File saved successfully!"
-    except Exception as e:
-        return ErrorUtil.handle_error(e, "Error in get RSS links controller")
+        spcific_topic_news = results[results["Topic"] == topic]
+        spcific_topic_news.to_excel(
+            os.path.join(
+                full_path,
+                "google_alerts.xlsx",
+            ),
+            index=False,
+        )
+        spcific_topic_news.to_parquet(
+            os.path.join(full_path, "google_alerts.parquet"), engine="pyarrow"
+        )
+    return "Files saved successfully!"
+
+
+# except Exception as e:
+#     return ErrorUtil.handle_error(e, "Error in get RSS links controller")

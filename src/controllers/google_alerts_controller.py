@@ -36,7 +36,7 @@ async def set_google_alerts(args):
 
 async def get_existing_google_alerts():
     try:
-        _scraper = GoogleAlertsService()
+        _scraper = await GoogleAlertsService()
         response = _scraper.get_existing_alerts()
 
         return f"Active alerts: {response}"
@@ -46,7 +46,7 @@ async def get_existing_google_alerts():
 
 async def remove_google_alerts(args):
     try:
-        _scraper = GoogleAlertsService()
+        _scraper = await GoogleAlertsService()
         response = _scraper.delete_existing_alerts(
             args.instruments,
             args.keywords,
@@ -58,25 +58,26 @@ async def remove_google_alerts(args):
 
 async def scrape_google_alerts(args):
     try:
-        _scraper = GoogleAlertsService()
+        _scraper = await GoogleAlertsService()
         return _scraper.get_alert(args)  # jsonable_encoder({"url_list": url_list})
     except Exception as e:
         return ErrorUtil.handle_error(e, "Error in scrape alert controller")
 
 
 async def get_cookies():
-    try:
-        _scraper = GoogleAlertsService()
-        results = _scraper.save_session_cookies()
-        return {"results": results}
+    # try:
+    _scraper = await GoogleAlertsService.create()
+    results = await _scraper.save_session_cookies()
+    return {"results": results}
 
-    except Exception as e:
-        return ErrorUtil.handle_error(e, "Error in get cookies controller")
+
+# except Exception as e:
+#     return ErrorUtil.handle_error(e, "Error in get cookies controller")
 
 
 async def get_rss_links():
     # try:
-    _scraper = GoogleAlertsService()
+    _scraper = await GoogleAlertsService()
     results = _scraper.get_rss_news()
     if results.empty:
         return "There is no new RSS feed, try again later"

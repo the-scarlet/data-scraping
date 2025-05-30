@@ -1,7 +1,9 @@
 import asyncio
 import logging
 import os
-from selenium.common.exceptions import TimeoutException
+
+# Or for synchronous Playwright:
+# from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 from config.config import AppConfig
 from src.utils.error_util import ErrorUtil
 from src.utils.selenium_util.selenium_util import SeleniumUtil
@@ -17,48 +19,61 @@ from src.services.google_alerts_service.preprocessing.preprocessing import (
 from src.services.google_alerts_service.processing.processing import (
     GoogleAlertsProcessing,
 )
+from src.utils.playwright_util.playwright_util import PlaywrightUtil
 
 logger = logging.getLogger("Data-scraping")
 config = AppConfig()
 
 
 class GoogleAlertsService:
+
     def __init__(self):
+        # Initialize synchronous components
         self._selenium = SeleniumUtil()
         self.preprocessing = GoogleAlertsPreprocessing()
         self.processing = GoogleAlertsProcessing()
+        self.playwright = None  # Will be set in async init
 
-    def save_session_cookies(self):
+    @classmethod
+    async def create(cls):
+        """Async factory method to properly initialize the class."""
+        instance = cls()  # Calls __init__ synchronously
+        instance.playwright = await PlaywrightUtil.create()  # Async setup
+        return instance
+
+    async def save_session_cookies(self):
+        logger.info("starting cookies")
+        # try:
+        # Go to the login page
+        # self._selenium.driver.get("https://www.google.com")
+        await self.playwright.get_url("https://www.google.com")
+        # Manually log in
+        # Waiting for you to log in
+        # sleep(3)
         try:
-            # Go to the login page
-            self._selenium.driver.get("https://www.google.com")
-
-            # Manually log in
-            # Waiting for you to log in
-            try:
-                self._selenium.wait_for(
-                    "element_to_be_clickable",
-                    "by_xpath",
-                    "//a[contains(@aria-label, 'Compte Google')]",
-                    timeout=60,  # seconds before timeout
-                    has_special_error_handler=True,
-                )
-            except TimeoutException:
-                logger.info(
-                    "You did not provide credentials! Try to set cookies again!"
-                )
-                exit(1)
-            # # Save cookies to a JSON file
-            cookies = self._selenium.driver.get_cookies()
-            # create folder
-            with open(config.cookies_path, "w") as file:
-                json.dump(cookies, file)
-
-            print("Cookies saved successfully!")
-            self._selenium.driver.quit()
-            return "Success"
+            await self.playwright.get_elements(
+                "by_xpath",
+                "//a[contains(@aria-label, 'Compte Google')]",
+                timeout=3000,  # seconds before timeout
+            )
         except Exception as e:
-            return ErrorUtil.handle_error(e, "Error in save cookies")
+            logger.info("You did not provide credentials! Try to set cookies again!")
+            logger.info(e)
+            await self.playwright.close_driver()
+            return  # exit(1)
+        # # Save cookies to a JSON file
+        cookies = await self.playwright.context.cookies()
+        # create folder
+        with open(config.cookies_path, "w") as file:
+            json.dump(cookies, file)
+
+        print("Cookies saved successfully!")
+        # self._selenium.driver.quit()
+        await self.playwright.close_driver()
+        return "Success"
+
+    # except Exception as e:
+    #     return ErrorUtil.handle_error(e, "Error in save cookies")
 
     def scrape_google_alerts(self, search_term):
         try:

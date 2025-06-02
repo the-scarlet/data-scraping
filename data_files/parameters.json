@@ -7,7 +7,6 @@
         "demand",
         "shipping"
     ],
-    "language": "anglais",
-    "region": "États-Unis",
+    "source": "Finance",
     "delivery": "Flux RSS"
 }

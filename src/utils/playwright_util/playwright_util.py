@@ -4,13 +4,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import TimeoutException
 from src.utils.error_util import ErrorUtil
-from config.selenium_config import SeleniumConfig
+from config.playwright_config import PlaywrightConfig
 from src.utils.error_util import ErrorUtil
 
 import asyncio
 from playwright.async_api import async_playwright
 
-selenium_config = SeleniumConfig()
+playwright_config = PlaywrightConfig()
 
 
 class PlaywrightUtil:
@@ -46,7 +46,7 @@ class PlaywrightUtil:
                 # "--disable-web-security",
                 # "--disable-features=VizDisplayCompositor",
                 # Language setting
-                f"--lang={selenium_config.chromium_country_language}",  # Replace with your language code
+                f"--lang={playwright_config.chromium_country_language}",  # Replace with your language code
                 "--no-sandbox",
                 "--disable-setuid-sandbox",
                 "--disable-dev-shm-usage",
@@ -56,14 +56,14 @@ class PlaywrightUtil:
         # Create context with additional options
         context = await instance.browser.new_context(
             # Language and locale settings
-            locale=selenium_config.chromium_country_language,  # e.g., 'en-US', 'fr-FR'
+            locale=playwright_config.chromium_country_language,  # e.g., 'en-US', 'fr-FR'
             # Additional privacy/stealth settings
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
             # Disable geolocation, notifications etc.
             permissions=[],  # Empty permissions list
             # Extra HTTP headers to hide automation
             extra_http_headers={
-                "Accept-Language": f"{selenium_config.chromium_country_language},en;q=0.9",
+                "Accept-Language": f"{playwright_config.chromium_country_language},en;q=0.9",
             },
         )
 
@@ -100,78 +100,86 @@ class PlaywrightUtil:
 
     def map_selenium_condition(self, condition):
         try:
-            return selenium_config.expected_conditions[condition]
+            return playwright_config.expected_conditions[condition]
         except Exception as e:
             return ErrorUtil.handle_error(e, "Error in map selenium condition")
 
-    def wait_for(
+    async def wait_for(
         self,
-        wait_condition,
         selection_method,
         locator,
-        timeout=selenium_config.timeout,
+        timeout=playwright_config.timeout,
         has_special_error_handler=False,
     ):
-        return
-        # try:
-
-        #     # condition = self.map_selenium_condition(wait_condition)
-        #     if has_special_error_handler:
-        #         element = WebDriverWait(self.driver, timeout).until(
-        #             condition((selector, locator))
-        #         )
-        #     else:
-        #         try:
-        #             element = WebDriverWait(self.driver, timeout).until(
-        #                 condition((selector, locator))
-        #             )
-        #         except TimeoutException as e:
-        #             ErrorUtil.handle_error(
-        #                 e,
-        #                 "This exception is the result of not finding an element in the page.",
-        #             )
-        #             exit(1)
-        #     return element
-        # except Exception as e:
-        #     return ErrorUtil.handle_error(e, "Error in wait for")
-
-    def set_text_input_value(
-        self, selection_method, locator, text, timeout=selenium_config.timeout
-    ):
+        if has_special_error_handler:
+            elements = await self.page.locator(locator).wait_for(
+                state="visible", timeout=timeout
+            )
+            return elements
+        # elif there is no special handling
         try:
-            # text_input = self.wait_for(
-            #     "element_to_be_clickable", selection_method, locator, timeout
-            # )
-            text_input = self.page.locator(locator)
-            text_input.send_keys(text)
-        except Exception as e:
-            return ErrorUtil.handle_error(e, "Error in set selenium text")
-
-    def click_button(self, selection_method, locator, timeout=selenium_config.timeout):
-        try:
-            self.page.click(locator)
-        except Exception as e:
-            return ErrorUtil.handle_error(e, "Error in click selenium button")
-
-    async def get_elements(
-        self, selection_method, locator, timeout=selenium_config.timeout
-    ):
-        try:
-            # selector = self.map_selector(selection_method)
-            # self.wait_for(
-            #     "presence_of_all_elements_located", selection_method, locator, timeout
-            # )
             elements = await self.page.locator(locator).wait_for(
                 state="visible", timeout=timeout
             )
             return elements
         except Exception as e:
-            return ErrorUtil.handle_error(e, "Error in get selenium elements")
+            return ErrorUtil.handle_error(e, "Waited for too long")
+
+    async def set_text_input_value(
+        self, selection_method, locator, text, timeout=playwright_config.timeout
+    ):
+        # try:
+        # text_input = self.wait_for(
+        #     "element_to_be_clickable", selection_method, locator, timeout
+        # )
+        text_input = self.page.locator(locator)
+        await text_input.fill(text)
+        await text_input.press("Enter")
+
+    # except Exception as e:
+    #     return ErrorUtil.handle_error(e, "Error in set selenium text")
+
+    async def click_button(
+        self, selection_method, locator, timeout=playwright_config.timeout
+    ):
+
+        button = self.page.locator(locator).nth(0)
+        await button.wait_for(state="visible", timeout=10000)
+        await button.click()
+
+    # except Exception as e:
+    #     return ErrorUtil.handle_error(e, "Error in click selenium button")
+
+    async def get_elements(
+        self, selection_method, locator, timeout=playwright_config.timeout
+    ):
+        # try:
+        # selector = self.map_selector(selection_method)
+        # self.wait_for(
+        #     "presence_of_all_elements_located", selection_method, locator, timeout
+        # )
+
+        # elements = await self.page.locator(locator).wait_for(
+        #     state="visible", timeout=timeout
+        # )
+        # Wait for at least one element to be visible
+        await self.page.locator(locator).first.wait_for(
+            state="visible", timeout=timeout
+        )
+
+        # Then get all elements
+        elements = await self.page.locator(locator).all()
+
+        return elements
+
+    # except Exception as e:
+    #     await self.close_driver()
+    #     return ErrorUtil.handle_error(e, "Error in get playwright elements")
 
     async def close_driver(self):
         await self.context.close()
         await self.browser.close()
         await self.playwright.stop()
 
-    def press_key(self, locator, key):
-        self.page.locator(locator).press(key)
+    async def press_key(self, locator, key):
+        await self.page.locator(locator).press(key)

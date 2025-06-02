@@ -18,10 +18,10 @@ config = AppConfig()
 
 
 class GoogleAlertsPreprocessing:
-    def google_login(self, selenium):
+    async def google_login(self, playwright):
         try:
             # Go to the website (login page not needed)
-            selenium.driver.get("https://www.google.com/alerts")
+            await playwright.get_url("https://www.google.com/alerts")
 
             # Load saved cookies
             try:
@@ -33,23 +33,21 @@ class GoogleAlertsPreprocessing:
                 )
                 exit(1)
 
-            # Add each cookie to the browser
-            for cookie in cookies:
-                selenium.driver.add_cookie(cookie)
+            # Add cookies to the browser
+            await playwright.context.add_cookies(cookies)
 
             # Refresh to apply cookies (now logged in)
-            selenium.driver.refresh()
+            await playwright.page.reload()
 
             # Make sure you are logged in
             try:
-                selenium.wait_for(
-                    "element_to_be_clickable",
+                await playwright.wait_for(
                     "by_xpath",
                     "//a[contains(@aria-label, 'Compte Google')]",
                     has_special_error_handler=True,
                 )
-            except TimeoutException:
-                selenium.close_driver()
+            except ValueError:
+                await playwright.close_driver()
                 logger.info(
                     "Did not manage to log in, Maybe you need to reset your cookies (command: set-cookies)"
                 )
@@ -57,16 +55,14 @@ class GoogleAlertsPreprocessing:
         except Exception as e:
             return ErrorUtil.handle_error(e, "Error in google login")
 
-    def are_there_google_alerts(self, selenium):
-        try:
-            selenium.wait_for(
-                "element_to_be_clickable",
-                "by_id",
-                "manage-alerts-div",
-                has_special_error_handler=True,
-            )
-        except TimeoutException:
-            selenium.close_driver()
+    async def are_there_google_alerts(self, playwright):
+
+        alerts = await playwright.page.locator(
+            "div#manage-alerts-div li.alert_instance"
+        ).all()
+        logger.info("alerts found: " + str(len(alerts)))
+        if len(alerts) == 0:
+            await playwright.close_driver()
             logger.info("No Active Alerts Have Been Found")
             exit(0)
 

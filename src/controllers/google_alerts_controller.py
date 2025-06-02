@@ -15,45 +15,52 @@ logger = logging.getLogger("Data-scraping")
 
 
 async def set_google_alerts(args):
-    try:
-        _scraper = GoogleAlertsService()
+    # try:
+    _scraper = await GoogleAlertsService.create()
 
-        response = _scraper.set_alert(
-            args.instruments,
-            args.keywords,
-            args.frequency,
-            args.source,
-            args.language,
-            args.region,
-            args.volume,
-            args.delivery,
-        )
-        return f"Request processed successfully. You will get alerts for the terms {response}."
+    response = await _scraper.set_alert(
+        args.instruments,
+        args.keywords,
+        args.frequency,
+        args.source,
+        args.language,
+        args.region,
+        args.volume,
+        args.delivery,
+    )
+    return (
+        f"Request processed successfully. You will get alerts for the terms {response}."
+    )
 
-    except Exception as e:
-        return ErrorUtil.handle_error(e, "Error in set alert controller")
+
+# except Exception as e:
+#     return ErrorUtil.handle_error(e, "Error in set alert controller")
 
 
 async def get_existing_google_alerts():
-    try:
-        _scraper = await GoogleAlertsService()
-        response = _scraper.get_existing_alerts()
+    # try:
+    _scraper = await GoogleAlertsService.create()
+    response = await _scraper.get_existing_alerts()
 
-        return f"Active alerts: {response}"
-    except Exception as e:
-        return ErrorUtil.handle_error(e, "Error in get existing alerts controller")
+    return f"Active alerts: {response}"
+
+
+# except Exception as e:
+#     return ErrorUtil.handle_error(e, "Error in get existing alerts controller")
 
 
 async def remove_google_alerts(args):
-    try:
-        _scraper = await GoogleAlertsService()
-        response = _scraper.delete_existing_alerts(
-            args.instruments,
-            args.keywords,
-        )
-        return response
-    except Exception as e:
-        return ErrorUtil.handle_error(e, "Error in remove alerts controller")
+    # try:
+    _scraper = await GoogleAlertsService.create()
+    response = await _scraper.delete_existing_alerts(
+        args.instruments,
+        args.keywords,
+    )
+    return response
+
+
+# except Exception as e:
+#     return ErrorUtil.handle_error(e, "Error in remove alerts controller")
 
 
 async def scrape_google_alerts(args):
@@ -77,8 +84,8 @@ async def get_cookies():
 
 async def get_rss_links():
     # try:
-    _scraper = await GoogleAlertsService()
-    results = _scraper.get_rss_news()
+    _scraper = await GoogleAlertsService.create()
+    results = await _scraper.get_rss_news()
     if results.empty:
         return "There is no new RSS feed, try again later"
     for topic in results["Topic"].unique():

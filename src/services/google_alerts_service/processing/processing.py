@@ -18,107 +18,104 @@ class GoogleAlertsProcessing:
     def __init__(self):
         self.feed_parser = FeedParser()
 
-    def get_active_option_dropdown_items(
-        self, selenium, option_class, user_option, available_options
+    async def get_active_option_dropdown_items(self, playwright):
+        # try:
+        # Find all menu items by their role
+        # menu_items = await playwright.page.query_selector_all(".goog-menuitem")
+        # items_info = dict()
+        # for item in menu_items:
+        #     selector = await item.query_selector(".goog-menuitem-content")
+        #     content = await selector.inner_text()
+        #     item_id = await item.get_attribute("id")
+        #     print(f"ID: {item_id}, Text: {content}")
+        #     if content not in items_info.keys():
+
+        #         items_info[content] = item_id
+        items_info = {
+            "Quand le cas se présente": ":0",
+            "Automatique": ":7",
+            "Finance": ":f",
+            "Toutes les langues": ":h",
+            "Toutes les régions": ":1u",
+            "Seulement les meilleurs résultats": ":4",
+            "Tous les résultats": ":5",
+            "Flux RSS": ":8l",
+        }
+
+        return items_info
+
+    # except Exception as e:
+    #     return ErrorUtil.handle_error(e, "Error in get option dropdown items")
+
+    async def set_option(
+        self, playwritght, option_class, user_option, available_options
     ):
-        try:
-            # Find all menu items by their role
-            menu_items = selenium.wait_for(
-                "presence_of_all_elements_located",
-                "by_xpath",
-                "//div[@role='menuitem']",
-            )
+        # try:
+        t = time()
 
-            # Create a list of dictionaries with info about each menu item
-            if option_class in available_options.keys():
-                logger.info("We laready have the info stocked form last time")
-                items_info = available_options[option_class]
-                return items_info
+        logger.info("collecting valid options for " + option_class)
+        valid_options2position = available_options
+        if option_class == "delivery":
+            dropdown_locator = "div.delivery_select div.goog-flat-menu-button"
+            option_locator = f"div.goog-menu.goog-menu-vertical div#\\{valid_options2position[user_option]}"
+        else:
+            dropdown_locator = f"div.goog-flat-menu-button.{option_class}_select"
+            option_locator = f"div.goog-menu.goog-menu-noicon div#\\{valid_options2position[user_option]}"
+        logger.info(f"dropdown : {dropdown_locator}, option: {option_locator}")
+        logger.info("done collecting valid options")
+        sleep(1)
+        await playwritght.click_button(
+            "by_class",
+            dropdown_locator,
+        )
+        logger.info(f"Took us {time()-t} s")
+        sleep(1)  # Brief pause for dropdown animation
+        await playwritght.page.click(option_locator)
+
+        sleep(1)
+        await playwritght.press_key(option_locator, "Escape")
+
+    async def get_rss_links_list(self, playwright):
+        # try:
+        delivery_settings = await playwright.page.locator(".delivery_settings").all()
+        logger.info("delivery setting: " + str(delivery_settings[0]))
+        topics2links = dict()
+        topic = ""
+        for delivery_div in delivery_settings:
+            logger.info("aaaaa")
+            # try:
+            # Find the RSS link (the <a> tag containing the RSS icon)
+            rss_anchor = delivery_div.locator("a:has(span.rss_icon)")
+            if await rss_anchor.count() > 0:
+                href = "https://www.google.fr" + await rss_anchor.get_attribute("href")
             else:
-                items_info = dict()
-                for item in menu_items:
-                    # Get the text content
-                    # text = item.text
-                    content_div = item.find_element(
-                        "xpath", ".//div[@class='goog-menuitem-content']"
-                    )
-                    text = content_div.text
-                    logger.info(text)
-                    if text == user_option:
-                        # data_value = item.get_attribute("data-value")
-                        id = item.get_attribute("id")
-                        items_info[text] = {
-                            # "data-value": data_value,
-                            "id": id
-                        }
-                        available_options[option_class] = items_info
-                        return items_info
-                logger.info(
-                    f"there is no {option_class} called {user_option}. Try to check that."
+                href = ""
+
+            if href:
+                # Get the query text (the span with the search term)
+                topic_locator = delivery_div.locator(".query_div span[tabindex='0']")
+                topic = (
+                    await topic_locator.inner_text()
+                    if await topic_locator.count() > 0
+                    else None
                 )
-                exit(1)
-        except Exception as e:
-            return ErrorUtil.handle_error(e, "Error in get option dropdown items")
 
-    def set_option(self, selenium, option_class, user_option, available_options):
-        try:
-            t = time()
-            selenium.click_button("by_class", option_class + "_select")
-            logger.info("collecting valid options for " + option_class)
-            valid_options2position = self.get_active_option_dropdown_items(
-                selenium, option_class, user_option, available_options
-            )
-            logger.info("done collecting valid options")
-            logger.info(f"Took us {time()-t} s")
-            sleep(2)  # Brief pause for dropdown animation
-            logger.info(valid_options2position)
-            logger.info(
-                f"user option and id {user_option}: {valid_options2position[user_option]["id"]}"
-            )
-            selenium.click_button(
-                "by_xpath",
-                f"//div[(@id='{valid_options2position[user_option]["id"]}') and @role='menuitem']",
-            )
-            logger.info("dropdown clicked")
-            selenium.press_key(selenium.keys.ESCAPE)
-            logger.info("escape button clicked")
-        except Exception as e:
-            return ErrorUtil.handle_error(e, "Error in set dropdown option")
+                topics2links.setdefault(topic, []).append(href)
+            logger.info("topic: " + str(topic) + " href: " + str(href))
+        logger.info(topics2links)
+        # except Exception as e:
+        #     logger.info(f"No RSS feed available or error: {e}")
+        # Extract the href attribute
+        return topics2links
 
-    def get_rss_links_list(self, selenium):
-        try:
-            delivery_settings = selenium.get_elements("by_class", "delivery_settings")
-            topics2links = dict()
-            for delivery_div in delivery_settings:
-                try:
-                    # Find the RSS link (the <a> tag containing the RSS icon)
-                    rss_link = delivery_div.find_element(
-                        "css selector", "a[href*='/alerts/feeds/']"
-                    )
-
-                    # Check if it has href (it should, but good to verify)
-                    href = rss_link.get_attribute("href")
-
-                    if href:
-                        # Get the query text (the span with the search term)
-                        query_span = delivery_div.find_element(
-                            "css selector", ".query_div span[tabindex='0']"
-                        )
-                        topic = query_span.text
-
-                        topics2links.setdefault(topic, []).append(href)
-                    logger.info("topic: " + str(topic) + " href: " + str(href))
-                except Exception as e:
-                    logger.info(f"No RSS feed available or error: {e}")
-                # Extract the href attribute
-            return topics2links
-        except Exception as e:
-            return ErrorUtil.handle_error(e, "Error in get RSS links list")
+    # except Exception as e:
+    #     return ErrorUtil.handle_error(e, "Error in get RSS links list")
 
     def update_rss_db(self, old_df, rss_links):
         try:
             new_rss_feed = []
             for topic in rss_links.keys():
+                logger.info(topic)
                 for rss_link in rss_links[topic]:
                     rss_element = self.feed_parser.parse_rss(rss_link, topic=topic)
                     new_rss_feed.extend(rss_element)
@@ -135,19 +132,20 @@ class GoogleAlertsProcessing:
                 new_df = pd.DataFrame(newly_added_rss_feed)
 
             # Concatenate the new data
+            logger.info(new_df)
             return new_df
+
         except Exception as e:
             return ErrorUtil.handle_error(e, "Error in updating RSS DB")
 
-    def get_active_alerts(self, selenium):
-        try:
-            alerts = selenium.get_elements("by_css", "li.alert_instance")
-            existing_alerts = set()
-            for alert in alerts:
-                alert_name = alert.find_element(
-                    selenium.map_selector("by_css"), ".query_div > span"
-                ).text
-                existing_alerts.add(alert_name)
-            return existing_alerts
-        except Exception as e:
-            return ErrorUtil.handle_error(e, "Error in get active alerts")
+    async def get_active_alerts(self, playwright):
+        # try:
+        logger.info("getting active alerts")
+        titles = await playwright.page.locator(
+            "li.alert_instance .query_div > span"
+        ).all_inner_texts()
+
+        return titles
+
+    # except Exception as e:
+    #     return ErrorUtil.handle_error(e, "Error in get active alerts")
